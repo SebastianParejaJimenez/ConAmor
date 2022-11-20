@@ -19,8 +19,13 @@
                             <button class="close" data-dismiss="alert" arial-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            @endforeach
 
+                            @endforeach
+                            <button type="button"
+                                        class="btn btn-primary btn-icon icon-left">
+                                        <i class="fas fa-plane"></i> Notifications <span
+                                            class="badge badge-transparent">4</span>
+                            </button>
                         </div>
                         @endif
 
@@ -55,12 +60,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Roles</label>
-                                    {!! Form::select('roles[]', $roles,[], array('class'=>'form-control')) !!}
-                                </div>
-                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 <a href="/usuarios" class="btn btn-secondary">Cancelar</a>

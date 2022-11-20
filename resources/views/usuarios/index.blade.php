@@ -18,7 +18,6 @@
                                     <th>ID</th>
                                     <th>NOMBRES</th>
                                     <th>EMAIL</th>
-                                    <th>ROL</th>
                                     <th>ACCIONES</th>
 
                                 </thead>
@@ -29,13 +28,6 @@
                                         <td>{{$usuario->name}}</td>
                                         <td>{{$usuario->email}}</td>
                                         <td>
-                                        @if(!empty($usuario->getRoleNames()))
-                                        @foreach($usuario->getRoleNames() as $rolname)
-                                        <h5><span class="badge badge-dark">{{$rolname}}</span></h5>
-                                        @endforeach
-                                        @endif
-                                        </td>
-                                        <td >
                                             <a class="btn btn-info" href="{{route('usuarios.edit', $usuario->id)}}">Editar</a>
                                             <!-- Formulario con html collective (Laravel) -->
                                             {!! Form::open(['method'=>'DELETE','class'=>'formulario-eliminar' ,'route'=>['usuarios.destroy',$usuario->id], 'style'=>'display:inline']) !!} 

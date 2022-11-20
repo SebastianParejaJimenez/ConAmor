@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
@@ -34,8 +33,8 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name','name')->all();
-        return view('usuarios.crear', compact('roles'));
+/*         $roles = Role::pluck('name','name')->all();
+ */        return view('usuarios.crear'/* , compact('roles') */);
     }
 
     /**
@@ -50,15 +49,15 @@ class UsuarioController extends Controller
         $this->validate($request,[
         'name'=>'required',
         'email'=>'required|email|unique:users,email', 
-        'password'=>'required|same:confirm-password',
-        'roles'=>'required'
-    ]);
+        'password'=>'required|same:confirm-password'
+/*         'roles'=>'required'
+ */    ]);
     $input = request()->all();
     $input['password'] = Hash::make($input['password']); 
 
     $user = User::create($input);
-    $user->assignRole($request->input('roles'));
-
+/*     $user->assignRole($request->input('roles'));
+ */
     return redirect()->route('usuarios.index');
 
 }
@@ -84,10 +83,10 @@ class UsuarioController extends Controller
     {
         //
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+/*         $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all(); */
 
-        return view('usuarios.editar', compact('user','roles','userRole'));
+        return view('usuarios.editar', compact('user'));
     }
 
     /**
@@ -103,9 +102,9 @@ class UsuarioController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:users,email,'.$id, 
-            'password'=>'same:confirm-password',
-            'roles'=>'required'
-        ]);
+            'password'=>'same:confirm-password'
+/*             'roles'=>'required'
+ */        ]);
 
         $input = $request->all();
         if (!empty($input['password'])) {
@@ -117,10 +116,9 @@ class UsuarioController extends Controller
 
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
 
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+/*         $user->assignRole($request->input('roles'));
+ */        return redirect()->route('usuarios.index');
     }
 
     /**
