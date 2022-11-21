@@ -2,30 +2,24 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header">
-            <h3 class="page__heading">Alta</h3>
-        </div>
         <div class="section-body">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
 <!--                         Para atrapar errores y mostrarlos
  -->                    @if($errors->any())
-                        <div class="alert alert-dark alert-dimissible fade show" role="alert">
-                            <strong>Revise los Campos!</strong>
+                        <div class="alert " role="alert">
                             @foreach($errors->all() as $error)
-                            <span class="badge badge-danger">{{$error}}</span>
-                            <button class="close" data-dismiss="alert" arial-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                            <button type="button" data-dismiss="alert" arial-label="Close"
+                                        class="btn btn-primary btn-icon icon-left">
+                                        <i class="fas fa-eye"></i> Error: <span
+                                            class="badge badge-transparent">{{$error}}</span>
                             </button>
 
                             @endforeach
-                            <button type="button"
-                                        class="btn btn-primary btn-icon icon-left">
-                                        <i class="fas fa-plane"></i> Notifications <span
-                                            class="badge badge-transparent">4</span>
-                            </button>
+
                         </div>
                         @endif
 
