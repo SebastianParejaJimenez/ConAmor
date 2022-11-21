@@ -5,6 +5,12 @@
         <i class="fas fa-columns"></i><span>Menu</span>
     </a>
 </li>
+
+<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+    <a class="nav-link" href="/facturas">
+        <i class="fas fa-money-bill"></i><span>Facturacion</span>
+    </a>
+</li>
 <li class="menu-header">Usuarios</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
@@ -28,7 +34,7 @@
 <li class="menu-header">Documentos</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/productos">
+    <a class="nav-link" href="/documentos">
         <i class=" far fa-file-alt"></i><span>Documentos</span>
     </a>
 
@@ -38,7 +44,7 @@
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
     <a class="nav-link" href="/productos">
-        <i class=" fas fa-user"></i><span>Productos</span>
+        <i class="fas fa-archive"></i><span>Productos</span>
     </a>
 
 </li>

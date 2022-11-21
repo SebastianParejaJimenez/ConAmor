@@ -6,6 +6,9 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\FacturaController;
 
 //Controladores
 
@@ -25,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Auth::routes();
 
@@ -36,4 +39,8 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BlogController::class);
     Route::resource('proveedores', ProveedorController::class);
+    Route::resource('productos', ProductoController::class);
+    Route::resource('documentos', DocumentoController::class);
+    Route::resource('facturas', FacturaController::class);
+
 });

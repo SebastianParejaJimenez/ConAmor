@@ -46,7 +46,7 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create($request->all());
-        return redirect()->route('proveedores.index');
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -90,9 +90,9 @@ class ProveedorController extends Controller
             'direccion'=>'required'
 
         ]);
-        $blog = Proveedor::find($id);
+        $proveedor = Proveedor::find($id);
 
-        $blog->update($request->all());
+        $proveedor->update($request->all());
         return redirect()->route('proveedores.index');
     }
 

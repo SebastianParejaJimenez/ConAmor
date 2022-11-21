@@ -11,7 +11,9 @@
 use App\Models\User;
 $cant_usuarios = User::count();    
 use App\Models\Proveedor;
-$cant_prov = Proveedor::count();                                                
+$cant_prov = Proveedor::count();   
+use App\Models\Producto;
+$cant_prod = Producto::count();                                              
 @endphp
 
     <section class="section">
@@ -74,7 +76,8 @@ $cant_prov = Proveedor::count();
                                 <h4>Productos</h4>
                             </div>
                             <div class="card-body">
-                                47
+                            {{$cant_prod}}
+
                             </div>
                             <a href="/proveedores" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                         </div>
