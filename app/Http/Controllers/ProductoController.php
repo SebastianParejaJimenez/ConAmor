@@ -15,9 +15,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $usuario = Auth::user()->name;
-        $productos=Producto::paginate(10);
-        return view('productos.index', compact('productos', 'usuario'));
+        $productos=Producto::paginate(5);
+        return view('productos.index', compact('productos'));
     
     }
 
@@ -43,7 +42,9 @@ class ProductoController extends Controller
         //
         request()->validate([
             'nombre'=>'required',
-            'tipo'=>'required'
+            'tipo'=>'required',
+            'precio'=>'required'
+
         ]);
 
         Producto::create($request->all());
@@ -86,7 +87,8 @@ class ProductoController extends Controller
         //
         request()->validate([
             'nombre'=>'required',
-            'tipo'=>'required'
+            'tipo'=>'required',
+            'precio'=>'required'
         ]);
         $producto=Producto::find($id);
         $producto->update($request->all());

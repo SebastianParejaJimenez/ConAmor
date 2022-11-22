@@ -18,6 +18,7 @@ class CreateProveedorTable extends Migration
             $table->string('nombre');
             $table->string('telefono');
             $table->string('direccion');
+
             $table->timestamps();
         });
     }

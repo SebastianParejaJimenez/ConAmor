@@ -11,12 +11,12 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-info" href="{{ route('productos.create') }}">Agregar Nuevo Producto</a>
-                            {{$usuario}}
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Tipos</th>
+                                    <th>Precio</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
@@ -25,6 +25,7 @@
                                         <td>{{$producto->id}}</td>
                                         <td>{{$producto->nombre}}</td>
                                         <td>{{$producto->tipo}}</td>
+                                        <td>{{$producto->precio}}</td>
                                         
 
                                         <td>
@@ -57,7 +58,6 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
 
 @if(session('eliminado')== "ok")

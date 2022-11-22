@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rol;
 use Illuminate\Http\Request;
-use App\Models\Factura;
-use App\Models\Producto;
-use Illuminate\Support\Facades\Auth;
 
-class FacturaController extends Controller
+class RolController extends Controller
 {
-    /**
+    //
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-        $usuario = Auth::user()->name;
-        $facturas=Factura::paginate(10);
-        return view('facturas.index', compact('facturas', 'usuario'));
+    {      
+        $roles = Rol::paginate(5);
+        return view('roles.index', compact('roles')) ;
+    
     }
 
     /**
@@ -30,9 +28,9 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        $productos=Producto::all();
-        return view('facturas.crear', compact('productos'));
         //
+        $rol=Rol::paginate(5);
+        return view('roles.crear' );
     }
 
     /**
@@ -44,19 +42,12 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        @foreach()
-
-        @endforeach
         request()->validate([
-            'nombre'=>'required',
-            'tipo'=>'required',
-            'precio'=>'required'
-
+            'nombre'=>'required'
         ]);
 
-        Producto::create($request->all());
-        return redirect()->route('productos.index');
-        
+        Rol::create($request->all());
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -79,6 +70,8 @@ class FacturaController extends Controller
     public function edit($id)
     {
         //
+        $rol=Rol::find($id);
+        return view('roles.editar', compact('rol'));
     }
 
     /**
@@ -91,6 +84,13 @@ class FacturaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        request()->validate([
+            'nombre'=>'required'
+        ]);
+        $rol=Rol::find($id);
+        $rol->update($request->all());
+        return redirect()->route('roles.index');
+
     }
 
     /**
@@ -102,5 +102,7 @@ class FacturaController extends Controller
     public function destroy($id)
     {
         //
+        Rol::find($id)->delete();
+        return redirect()->route('roles.index')->with('eliminado','ok');
     }
 }

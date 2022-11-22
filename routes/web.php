@@ -42,5 +42,6 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::resource('productos', ProductoController::class);
     Route::resource('documentos', DocumentoController::class);
     Route::resource('facturas', FacturaController::class);
+    Route::resource('roles', RolController::class);
 
 });

@@ -22,7 +22,7 @@
                                 <tbody>
                                 @foreach($roles as $role)
                                     <tr>
-                                        <td>{{$role->name}}</td>
+                                        <td>{{$role->nombre}}</td>
                                         <td>
                                             @can('editar-rol')
                                             <a class="btn btn-info" href="{{route('roles.edit', $role->id)}}">Editar</a>

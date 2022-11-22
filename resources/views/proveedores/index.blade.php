@@ -15,19 +15,19 @@
 
                             <table class="table table-stripped mt-2">
                                 <thead>
-                                    <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Telefono</th>
                                     <th>Direccion</th>
+                                    <th>Creado Por</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
                                 @foreach($proveedores as $proveedor)
                                     <tr>
-                                        <td>{{$proveedor->id}}</td>
                                         <td>{{$proveedor->nombre}}</td>
                                         <td>{{$proveedor->telefono}}</td>
                                         <td>{{$proveedor->direccion}}</td>
+                                        <td>{{$proveedor->name}}</td>
 
                                         <td>
                                         <a href="{{ route('proveedores.edit',$proveedor->id) }}" class="btn btn-info" >Editar</a>

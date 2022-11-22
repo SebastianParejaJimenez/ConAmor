@@ -42,6 +42,12 @@
                                     <input type="text" name="tipo" class="form-control" value="{{$producto->tipo}}">
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Precio</label>
+                                    <input type="text" name="tipo" class="form-control" value="{{$producto->precio}}">
+                                </div>
+                            </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar Cambios</button>
