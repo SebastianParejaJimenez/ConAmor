@@ -36,7 +36,6 @@ class ProductoController extends Controller
     {
         //
         
-        $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
         return view('productos.crear', compact('user'));
     }
