@@ -30,6 +30,7 @@
 
                         <form action="{{ route('proveedores.store') }}" method="POST">
                             @csrf
+                            <input type="hidden" value="{{$user}}" name="user_id">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
@@ -41,7 +42,13 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Telefono del Proveedor</label>
-                                    <input type="text" name="telefono" class="form-control">
+                                    <input type="number" name="telefono" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Correo del Proveedor</label>
+                                    <input type="email" name="correo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

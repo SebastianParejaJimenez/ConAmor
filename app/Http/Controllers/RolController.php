@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RolController extends Controller
 {
@@ -16,8 +17,10 @@ class RolController extends Controller
      */
     public function index()
     {      
+        $rol = Auth::user()->rol_id;
+
         $roles = Rol::paginate(5);
-        return view('roles.index', compact('roles')) ;
+        return view('roles.index', compact('roles','rol')) ;
     
     }
 

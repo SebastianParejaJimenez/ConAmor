@@ -9,6 +9,6 @@ class Proveedor extends Model
 {
     protected $primaryKey = 'id_proveedor';
     use HasFactory;
-    protected $fillable = ['nombre','telefono','direccion'];
+    protected $fillable = ['nombre','telefono','correo','direccion','user_id'];
 
 }

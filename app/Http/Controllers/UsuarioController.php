@@ -26,6 +26,7 @@ class UsuarioController extends Controller
         $rol = Auth::user()->rol_id;
         
         $usuarios = DB::table('users')
+            ->select('id', 'name','email', 'nombre','users.created_at')
             ->join('rols', 'users.rol_id', '=', 'rols.id_rol')
             ->get();
         return view('usuarios.index', compact('usuarios', 'rol'));

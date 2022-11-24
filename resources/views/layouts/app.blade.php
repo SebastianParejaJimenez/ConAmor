@@ -63,7 +63,7 @@
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
 @yield('page_js')
 @yield('scripts')
-<script>
+<!-- <script>
     let loggedInUser =@json(\Illuminate\Support\Facades\Auth::user());
     let loginUrl = '{{ route('login') }}';
     const userUrl = '{{url('users')}}';
@@ -78,5 +78,5 @@
             }
         };
     }(jQuery));
-</script>
+</script> -->
 </html>

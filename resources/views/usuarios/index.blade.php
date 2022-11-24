@@ -12,13 +12,17 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                        @if($rol===1)
+
                             <a class="btn btn-info" href="{{ route('usuarios.create') }}">Agregar Nuevo Usuario</a>
+                        @endif
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
                                     <th>NOMBRES</th>
                                     <th>EMAIL</th>
                                     <th>ROL</th>
+                                    <th>Hora de Creacion</th>
                                     @if ($rol===1)  
                                     <th>ACCIONES</th>
                                     @endif
@@ -31,7 +35,12 @@
                                         <td>{{$usuario->id}}</td>
                                         <td>{{$usuario->name}}</td>
                                         <td>{{$usuario->email}}</td>
-                                        <td>{{$usuario->nombre}}</td>
+                                        <td>
+                                            <span class="badge badge-pill badge-primary">{{$usuario->nombre}}</span>
+                                        </td>
+                                        <td>
+                                        <span class="badge badge-pill badge-light">{{$usuario->created_at}}</span>
+                                        </td>
                                         @if($rol===1)
                                         <td>
                                             <a class="btn btn-info" href="{{route('usuarios.edit', $usuario->id)}}">Editar</a>

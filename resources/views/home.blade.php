@@ -27,7 +27,6 @@ $cant_prod = Producto::count();
                         <div class="card-body">                          
                                 <div class="row">
                                 
-                                    
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-info">
@@ -44,7 +43,6 @@ $cant_prod = Producto::count();
                         </div>
                     </div>
                 </div>
-                                    
                                                                             
                                     
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -94,7 +92,7 @@ $cant_prod = Producto::count();
                                 <h4>Documentos</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                0   
                             </div>
                             <a href="/proveedores" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                         </div>

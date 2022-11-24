@@ -10,25 +10,24 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-rol')
+                            @if($rol==1)
                             <a class="btn btn-info" href="{{ route('roles.create') }}">Añadir Nuevo Rol</a>
-                            @endcan
-
+                            @endif
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ROL</th>
+                                    @if($rol==1)
                                     <th>ACCIONES</th>
+                                    @endif
                                 </thead>
                                 <tbody>
                                 @foreach($roles as $role)
                                     <tr>
                                         <td>{{$role->nombre}}</td>
+                                        @if($rol==1)
                                         <td>
-                                            @can('editar-rol')
                                             <a class="btn btn-info" href="{{route('roles.edit', $role->id_rol)}}">Editar</a>
-                                            @endcan
 
-                                            @can('borrar-rol')
                                             <!-- Formulario con html collective (Laravel) -->
                                             <form action="{{ route('roles.destroy',$role->id_rol) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @csrf
@@ -36,8 +35,7 @@
                                                 <button type="submit" class="btn btn-danger">Borrar</button>
 
                                             </form>
-                                            @endcan
-
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach

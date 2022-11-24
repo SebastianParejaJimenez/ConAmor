@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
 <section class="section">
 <div class="section-header">
 </div>
@@ -30,21 +32,21 @@
                             @csrf
                             <div class="row">
                                 <div class="col">
-                                     <select name="" id="nombre" class="form-control">
-                                        <option value="" disable>Seleccione una Opcion</option>
+                                      <select name="" id="nombre" class="form-control">
+                                        <option value="" disabled>Seleccione una Opcion</option>
                                         @foreach($productos as $producto)
                                         <option value="{{$producto->id_producto}}">{{$producto->nombre}}</option>
                                         @endforeach
-                                    </select> 
-<!--                                     <div class="col">
+                                    </select>  
+<!--                                    <div class="col">
                                     <input type="number" id="id" class="form-control" placeholder="ID" onchange="capturardatos()">
-                                </div>  -->                               
+                                </div>      -->                          
                             </div>
                                 <div class="col">
-                                    <input type="text" id="precio" class="form-control" placeholder="Precio">
+                                    <input type="number" id="precio" class="form-control" placeholder="Precio">
                                 </div>
                                 <div class="col">
-                                    <input type="text" id="cantidad" class="form-control" placeholder="Cantidad">
+                                    <input type="number" id="cantidad" class="form-control" placeholder="Cantidad">
                                 </div>
                                 <div class="col">
                                     <input onclick="btnAdd()" type="button" class="btn btn-primary form-control" value="Guardar">
@@ -105,9 +107,10 @@ function btnAdd(){
     var cantidad = document.getElementById("cantidad").value
     var precio = parseInt(document.getElementById("precio").value)
 
-    total = precio*cantidad
+    if (cantidad<0 || precio<0) {
 
-
+    }else{
+        total = precio*cantidad
     var tabla= document.getElementById("tabla")
     var fila = tabla.insertRow(tabla.rows.lenght)
     fila.innerHTML = "<tr><td>"+ nameproduct + "</td><td>" + precio + "</td><td>"+ cantidad + "</td></tr>"//Esta propiedad nos permite mandar strings
@@ -115,8 +118,11 @@ function btnAdd(){
     totalfactura = parseInt(total)+ parseInt(totalfactura)
 
     document.getElementById("totalf").innerHTML=" <br> El total de su factura es: "+ totalfactura
+    }
+
 
 }
+
 
 function capturardatos(id){
     var id = $('#id').val();

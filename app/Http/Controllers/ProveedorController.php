@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProveedorController extends Controller
 {
@@ -14,8 +16,14 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedores = Proveedor::paginate(5);
-        return view('proveedores.index', compact('proveedores'));
+        $rol = Auth::user()->rol_id;
+
+        $proveedores = DB::table('proveedors')
+        ->select('id_proveedor', 'nombre','telefono', 'direccion','correo', 'name','proveedors.created_at')
+        ->join('users', 'proveedors.user_id', '=', 'users.id')
+        ->paginate(5);
+        $proveedores4 = Proveedor::paginate(5);
+        return view('proveedores.index', compact('proveedores', 'rol'));
     }
 
     /**
@@ -26,7 +34,8 @@ class ProveedorController extends Controller
     public function create()
     {
         //
-        return view('proveedores.crear');
+        $user = Auth::user()->id;
+        return view('proveedores.crear', compact('user'));
 
     }
 
@@ -42,7 +51,9 @@ class ProveedorController extends Controller
         request()->validate([
             'nombre' => 'required',
             'telefono'=>'required',
-            'direccion'=>'required'
+            'correo'=>'required',
+            'direccion'=>'required',
+            'user_id'=>'required'
         ]);
 
         Proveedor::create($request->all());
@@ -69,6 +80,7 @@ class ProveedorController extends Controller
     public function edit($id)
     {
         //
+        
         $proveedor = Proveedor::find($id);
         return view('proveedores.editar',compact('proveedor'));
 
@@ -87,7 +99,9 @@ class ProveedorController extends Controller
         request()->validate([
             'nombre' => 'required',
             'telefono'=>'required',
-            'direccion'=>'required'
+            'correo'=>'required',
+            'direccion'=>'required',
+            'user_id'=>'required'
 
         ]);
         $proveedor = Proveedor::find($id);

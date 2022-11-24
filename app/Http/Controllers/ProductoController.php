@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class ProductoController extends Controller
 {
@@ -15,8 +16,14 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos=Producto::paginate(5);
-        return view('productos.index', compact('productos'));
+        $rol = Auth::user()->rol_id;
+
+        $productos = DB::table('productos')
+        ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
+        ->join('users', 'productos.user_id', '=', 'users.id')
+        ->paginate(5);
+        $productos5=Producto::paginate(5);
+        return view('productos.index', compact('productos','rol'));
     
     }
 
@@ -28,7 +35,10 @@ class ProductoController extends Controller
     public function create()
     {
         //
-        return view('productos.crear');
+        
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
+        return view('productos.crear', compact('user'));
     }
 
     /**
@@ -43,8 +53,8 @@ class ProductoController extends Controller
         request()->validate([
             'nombre'=>'required',
             'tipo'=>'required',
-            'precio'=>'required'
-
+            'precio'=>'required',
+            'user_id'=>'required'
         ]);
 
         Producto::create($request->all());
@@ -90,7 +100,8 @@ class ProductoController extends Controller
         request()->validate([
             'nombre'=>'required',
             'tipo'=>'required',
-            'precio'=>'required'
+            'precio'=>'required',
+            'user_id'=>'required'
         ]);
         $producto=Producto::find($id);
         $producto->update($request->all());

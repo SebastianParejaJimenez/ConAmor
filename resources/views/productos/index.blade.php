@@ -10,14 +10,20 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-info" href="{{ route('productos.create') }}">Agregar Nuevo Producto</a>
+                        @if($rol===1)
+                        <a class="btn btn-info" href="{{ route('productos.create') }}">Agregar Nuevo Usuario</a>
+                        @endif
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Tipos</th>
                                     <th>Precio</th>
-                                    <th>Acciones</th>
+                                    <th>Creado por</th>
+                                    <th>Hora de Creacion</th>
+                                    @if ($rol===1)  
+                                    <th>ACCIONES</th>
+                                    @endif                                
                                 </thead>
                                 <tbody>
                                 @foreach($productos as $producto)
@@ -26,7 +32,14 @@
                                         <td>{{$producto->nombre}}</td>
                                         <td>{{$producto->tipo}}</td>
                                         <td>{{$producto->precio}}</td>
-                                        
+                                        <td>
+                                            <span class="badge badge-pill badge-primary">{{$producto->name}}</span>
+                                        </td>
+                                        <td>
+                                        <span class="badge badge-pill badge-light">{{$producto->created_at}}</span>
+
+                                        </td>
+                                        @if($rol===1)
 
                                         <td>
                                         <a href="{{ route('productos.edit',$producto->id_producto)  }}" class="btn btn-info" >Editar</a>
@@ -39,6 +52,7 @@
 
                                             </form>
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

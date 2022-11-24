@@ -9,5 +9,5 @@ class Documento extends Model
 {
     protected $primaryKey = 'id_documento';
     use HasFactory;
-    protected $fillable = ['nombre','imagen'];
+    protected $fillable = ['nombre','imagen','user_id'];
 }
