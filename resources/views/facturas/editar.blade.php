@@ -28,33 +28,7 @@
                         <form action="{{ route('proveedores.update', $proveedor->id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" name="nombre" class="form-control" value="{{$proveedor->nombre}}">
-                                </div>
-                            </div>
-                        
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Telefono</label>
-                                    <input type="text" name="telefono" class="form-control" value="{{$proveedor->telefono}}">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Direccion</label>
-                                    <input type="text" name="direccion" class="form-control" value="{{$proveedor->direccion}}">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                <a href="/proveedores" class="btn btn-secondary">Cancelar</a>
-                            </div>
-                        </div>
+                            
                         </form>
                         
 

@@ -3,9 +3,12 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Producto</h3>
-        </div>
+            <h1>Editar</h1>
+          </div>
         <div class="section-body">
+            
+        <h2 class="section-title">Formulario para Editar</h2>
+            <p class="section-lead">El siguiente formulario le permitira editar el Producto seleccionado.</p>            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -25,7 +28,7 @@
                         @endif
 
 
-                        <form action="{{ route('productos.update', $producto->id)}}" method="POST">
+                        <form action="{{ route('productos.update', $producto->id_producto)}}" method="POST">
                             @csrf
                             @method('PUT')
                         <div class="row">
@@ -45,7 +48,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Precio</label>
-                                    <input type="text" name="tipo" class="form-control" value="{{$producto->precio}}">
+                                    <input type="number" name="precio" class="form-control" value="{{$producto->precio}}">
                                 </div>
                             </div>
 

@@ -25,12 +25,12 @@
                                         <td>{{$role->nombre}}</td>
                                         <td>
                                             @can('editar-rol')
-                                            <a class="btn btn-info" href="{{route('roles.edit', $role->id)}}">Editar</a>
+                                            <a class="btn btn-info" href="{{route('roles.edit', $role->id_rol)}}">Editar</a>
                                             @endcan
 
                                             @can('borrar-rol')
                                             <!-- Formulario con html collective (Laravel) -->
-                                            <form action="{{ route('roles.destroy',$role->id) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                            <form action="{{ route('roles.destroy',$role->id_rol) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Borrar</button>

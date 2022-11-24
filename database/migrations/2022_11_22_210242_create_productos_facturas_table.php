@@ -14,11 +14,11 @@ class CreateProductosFacturasTable extends Migration
     public function up()
     {
         Schema::create('productos_facturas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_productos_factura');
             $table->unsignedBigInteger('producto_id');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('producto_id')->references('id_producto')->on('productos');
             $table->unsignedBigInteger('factura_id');
-            $table->foreign('factura_id')->references('id')->on('facturas');
+            $table->foreign('factura_id')->references('id_factura')->on('facturas');
             $table->timestamps();
         });
     }

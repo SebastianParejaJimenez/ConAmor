@@ -22,15 +22,15 @@
                                 <tbody>
                                 @foreach($productos as $producto)
                                     <tr>
-                                        <td>{{$producto->id}}</td>
+                                        <td>{{$producto->id_producto}}</td>
                                         <td>{{$producto->nombre}}</td>
                                         <td>{{$producto->tipo}}</td>
                                         <td>{{$producto->precio}}</td>
                                         
 
                                         <td>
-                                        <a href="{{ route('productos.edit',$producto->id)  }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('productos.edit',$producto->id_producto)  }}" class="btn btn-info" >Editar</a>
+                                        <form action="{{ route('productos.destroy',$producto->id_producto) }}" method="POST" class="formulario-eliminar" style="display: inline;">
 
                                                 @csrf
 

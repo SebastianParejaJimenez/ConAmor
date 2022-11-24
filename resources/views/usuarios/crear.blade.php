@@ -2,7 +2,13 @@
 
 @section('content')
     <section class="section">
+    <div class="section-header">
+            <h1>Crear</h1>
+          </div>
         <div class="section-body">
+            
+        <h2 class="section-title">Formulario para Crear</h2>
+            <p class="section-lead">El siguiente formulario le permitira crear el Usuario a desear.</p>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -51,6 +57,13 @@
                                 <div class="form-group">
                                     <label for="confirm-password">Confirmar Contraseña</label>
                                     {!! Form::password('confirm-password', array('class'=>'form-control')) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Roles</label>
+                                    {!! Form::select('rol_id', $rol_id,[], array('class'=>'form-control')) !!}
                                 </div>
                             </div>
 

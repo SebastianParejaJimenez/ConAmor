@@ -44,9 +44,6 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        @foreach()
-
-        @endforeach
         request()->validate([
             'nombre'=>'required',
             'tipo'=>'required',

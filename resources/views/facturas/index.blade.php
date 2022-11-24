@@ -16,7 +16,6 @@
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
-                                    <th>Fecha</th>
                                     <th>Total</th>
                                     <th>Acciones</th>
                                 </thead>
@@ -24,12 +23,11 @@
                                 @foreach($facturas as $factura)
                                     <tr>
                                         <td>{{$factura->id}}</td>
-                                        <td>{{$factura->fecha}}</td>
                                         <td>{{$factura->total}}</td>
 
                                         <td>
-                                        <a href="{{ route('facturas.edit',$factura->id) }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('facturas.destroy',$factura->id) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('facturas.edit',$factura->id_factura) }}" class="btn btn-info" >Editar</a>
+                                        <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @csrf
 
                                                 @method('DELETE')
@@ -56,7 +54,6 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
 
 @if(session('eliminado')== "ok")

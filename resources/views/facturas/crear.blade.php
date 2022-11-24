@@ -2,8 +2,12 @@
 
 @section('content')
 <section class="section">
-    <div class="section-body">
-        <div class="row">
+<div class="section-header">
+</div>
+        <div class="section-body">
+        <h2 class="section-title">Generar Facturas</h2>
+            <p class="section-lead">El siguiente formulario le permitira Generar Facturas según los Productos a Seleccionar.</p>         
+            <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -22,17 +26,20 @@
                         @endif
 
 
-                        <form action="{{ route('proveedores.store') }}" method="POST">
+                        <form action="{{ route('facturas.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col">
-                                    <select name="" id="nombre" class="form-control">
-                                        <option value="" selected>Seleccione una Opcion</option>
+                                     <select name="" id="nombre" class="form-control">
+                                        <option value="" disable>Seleccione una Opcion</option>
                                         @foreach($productos as $producto)
-                                        <option value="{{$producto->id}}">{{$producto->nombre}}</option>
+                                        <option value="{{$producto->id_producto}}">{{$producto->nombre}}</option>
                                         @endforeach
-                                    </select>
-                                </div>
+                                    </select> 
+<!--                                     <div class="col">
+                                    <input type="number" id="id" class="form-control" placeholder="ID" onchange="capturardatos()">
+                                </div>  -->                               
+                            </div>
                                 <div class="col">
                                     <input type="text" id="precio" class="form-control" placeholder="Precio">
                                 </div>
@@ -46,7 +53,7 @@
                             </div>
 
 
-                            <table class="table table-stripped mt-2" id="tabla">
+                            <table class="table table-sm mt-2" id="tabla">
                                 <thead>
                                     <th>Nombre</th>
                                     <th>Precio</th>
@@ -56,12 +63,26 @@
 
                                 </tbody>
                             </table>
+                                <div class="row">
+                                <div class="col-12 col-md-6 col-lg-12">
+                                    <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h4>Total Facturado</h4>
+                                        <div class="card-header-action">
+                                        <a href="#" class="btn btn-primary">
+                                            a
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" >
+                                        <p id="totalf">El total de los Insumos es de: </p>
+                                    </div>
+                                    </div>
 
-                            <button disabled type="button" class="btn btn-primary" id="totalf"></button>
 
                             <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                         <button type="button" class="btn btn-primary">Guardar</button>
-                        <a href="/proveedores" class="btn btn-secondary">Cancelar</a>
+                        <a href="/facturas" class="btn btn-secondary">Cancelar</a>
 
                     </div>
                     </div>
@@ -76,10 +97,8 @@
     </div>
     
 <script>
-    var n= 0
 var total = 0
 var totalfactura = 0
-var acomulador = 0
 function btnAdd(){
     var prod = document.getElementById("nombre")
     var nameproduct = prod.options[prod.selectedIndex].text
@@ -98,6 +117,21 @@ function btnAdd(){
     document.getElementById("totalf").innerHTML=" <br> El total de su factura es: "+ totalfactura
 
 }
+
+function capturardatos(id){
+    var id = $('#id').val();
+    var ruta = "{{ route('productos.show', 1)}}"
+    $.ajax({
+        url: ruta,
+        method: 'GET'
+    }).then(function (datos){
+        var datos = JSON.parse(datos.replace(/&quot;/g,'"'));
+        console.log(datos);
+    });
+
+
+}
+
 </script>
 
 </section>

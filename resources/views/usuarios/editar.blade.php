@@ -2,10 +2,13 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header">
-            <h3 class="page__heading">Editar</h3>
-        </div>
+    <div class="section-header">
+            <h1>Editar</h1>
+          </div>
         <div class="section-body">
+            
+        <h2 class="section-title">Formulario para Editar</h2>
+            <p class="section-lead">El siguiente formulario le permitira editar el Usuario seleccionado.</p> 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -55,7 +58,15 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Seleccione el Rol</label>
+                                    {!! Form::select('rol_id', $rol_id,[], array('class'=>'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
+                                <a href="/usuarios" class="btn btn-secondary">Cancelar</a>
+
                             </div>
                         </div>
                         {!! Form::close()!!}

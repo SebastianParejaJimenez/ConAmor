@@ -18,8 +18,12 @@
                                     <th>ID</th>
                                     <th>NOMBRES</th>
                                     <th>EMAIL</th>
+                                    <th>ROL</th>
+                                    @if ($rol===1)  
                                     <th>ACCIONES</th>
+                                    @endif
 
+                                     
                                 </thead>
                                 <tbody>
                                     @foreach($usuarios as $usuario)
@@ -27,6 +31,8 @@
                                         <td>{{$usuario->id}}</td>
                                         <td>{{$usuario->name}}</td>
                                         <td>{{$usuario->email}}</td>
+                                        <td>{{$usuario->nombre}}</td>
+                                        @if($rol===1)
                                         <td>
                                             <a class="btn btn-info" href="{{route('usuarios.edit', $usuario->id)}}">Editar</a>
                                             <!-- Formulario con html collective (Laravel) -->
@@ -35,12 +41,13 @@
                                             {!! Form::close() !!}
 
                                         </td>
+                                        @endif
+
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">
-                                {!! $usuarios->links() !!}
                             </div>
 
                         </div>

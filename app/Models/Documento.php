@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Documento extends Model
 {
+    protected $primaryKey = 'id_documento';
     use HasFactory;
     protected $fillable = ['nombre','imagen'];
 }

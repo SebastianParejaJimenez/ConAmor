@@ -14,8 +14,10 @@ class CreateDocumentosTable extends Migration
     public function up()
     {
         Schema::create('documentos', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_documento');
             $table->string('nombre');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('documento');
 
             $table->timestamps();

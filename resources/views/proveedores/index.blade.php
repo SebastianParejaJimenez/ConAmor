@@ -18,7 +18,6 @@
                                     <th>Nombre</th>
                                     <th>Telefono</th>
                                     <th>Direccion</th>
-                                    <th>Creado Por</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
@@ -27,11 +26,10 @@
                                         <td>{{$proveedor->nombre}}</td>
                                         <td>{{$proveedor->telefono}}</td>
                                         <td>{{$proveedor->direccion}}</td>
-                                        <td>{{$proveedor->name}}</td>
 
                                         <td>
-                                        <a href="{{ route('proveedores.edit',$proveedor->id) }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('proveedores.destroy',$proveedor->id) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('proveedores.edit',$proveedor->id_proveedor) }}" class="btn btn-info" >Editar</a>
+                                        <form action="{{ route('proveedores.destroy',$proveedor->id_proveedor) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @can('editar-proveedor')
                                                 @endcan
                                                 @csrf

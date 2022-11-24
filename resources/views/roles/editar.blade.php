@@ -2,10 +2,13 @@
 
 @section('content')
 <section class="section">
-    <div class="section-header">
-        <h3 class="page__heading">Alta</h3>
-    </div>
-    <div class="section-body">
+<div class="section-header">
+            <h1>Editar</h1>
+          </div>
+        <div class="section-body">
+            
+        <h2 class="section-title">Formulario para Editar</h2>
+            <p class="section-lead">El siguiente formulario le permitira editar el Rol seleccionado.</p> 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -24,7 +27,7 @@
                         </div>
                         @endif
 
-                        <form action="{{ route('roles.update', $rol->id)}}" method="POST">
+                        <form action="{{ route('roles.update', $rol->id_rol)}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">

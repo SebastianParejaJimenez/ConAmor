@@ -6,7 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Rol;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UsuarioController extends Controller
@@ -19,8 +23,12 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $usuarios = User::paginate(5);
-        return view('usuarios.index', compact('usuarios'));
+        $rol = Auth::user()->rol_id;
+        
+        $usuarios = DB::table('users')
+            ->join('rols', 'users.rol_id', '=', 'rols.id_rol')
+            ->get();
+        return view('usuarios.index', compact('usuarios', 'rol'));
 
 
     }
@@ -33,8 +41,8 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-/*         $roles = Role::pluck('name','name')->all();
- */        return view('usuarios.crear'/* , compact('roles') */);
+         $rol_id = Rol::pluck('nombre','id_rol')->all();
+        return view('usuarios.crear', compact('rol_id'));
     }
 
     /**
@@ -49,9 +57,9 @@ class UsuarioController extends Controller
         $this->validate($request,[
         'name'=>'required',
         'email'=>'required|email|unique:users,email', 
-        'password'=>'required|same:confirm-password'
-/*         'roles'=>'required'
- */    ]);
+        'password'=>'required|same:confirm-password',
+        'rol_id'=>'required'
+     ]);
     $input = request()->all();
     $input['password'] = Hash::make($input['password']); 
 
@@ -83,10 +91,8 @@ class UsuarioController extends Controller
     {
         //
         $user = User::find($id);
-/*         $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all(); */
-
-        return view('usuarios.editar', compact('user'));
+        $rol_id = Rol::pluck('nombre','id_rol')->all();
+        return view('usuarios.editar', compact('user', 'rol_id'));
     }
 
     /**
@@ -102,9 +108,9 @@ class UsuarioController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:users,email,'.$id, 
-            'password'=>'same:confirm-password'
-/*             'roles'=>'required'
- */        ]);
+            'password'=>'same:confirm-password',
+            'rol_id' => 'required'
+        ]);
 
         $input = $request->all();
         if (!empty($input['password'])) {
