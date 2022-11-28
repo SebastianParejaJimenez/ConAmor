@@ -86,8 +86,19 @@ Swal.fire({
 
 </script>
 @endif
+@if(session('creado')== "ok")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Creado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+</script>
+@endif
 
-    <script>
+<script>
 
 $('.formulario-eliminar').submit(function(e){
 e.preventDefault();

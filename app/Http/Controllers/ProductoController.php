@@ -58,7 +58,7 @@ class ProductoController extends Controller
         ]);
 
         Producto::create($request->all());
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')->with('creado','ok');
     }
 
     /**

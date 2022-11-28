@@ -24,6 +24,7 @@
 
                         <form enctype="multipart/form-data" action="{{ route('documentos.store') }}" method="POST">
                             @csrf
+                            <input type="hidden" value="{{$user}}" name="user_id">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
@@ -39,16 +40,16 @@
                     <img id="docSeleccionada" style="max-height: 300px;">           
                 </div>
                                 <div class="card-body col-xs-12 col-sm-12 col-md-12">
-                                    <div class="jumbotron text-center border border-primary">
+                                    <div class="jumbotron text-center">
                                         <h2>Seleccionar Documento</h2>
 
-                                        <input name="documento" id="documento" type='file' class="hidden" />
+                                        <input name="documento" id="documento" type='file' class="hidden" accept=".pdf, .txt, .docsx, .jpg, .png, .jpeg" />
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <a href="/productos" class="btn btn-secondary">Cancelar</a>
+                                    <a href="/documentos" class="btn btn-secondary">Cancelar</a>
                                 </div>
                             </div>
                         </form>

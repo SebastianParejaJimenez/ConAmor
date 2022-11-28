@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentoController extends Controller
 {
@@ -16,6 +17,7 @@ class DocumentoController extends Controller
     public function index()
     {
         //
+        
         $documentos=Documento::paginate(5);
         return view('documentos.index', compact('documentos'));
 
@@ -29,7 +31,8 @@ class DocumentoController extends Controller
     public function create()
     {
         //
-        return view('documentos.crear');
+        $user = Auth::user()->id;
+        return view('documentos.crear', compact('user'));
 
     }
 
@@ -44,20 +47,22 @@ class DocumentoController extends Controller
         //
         request()->validate([
             'nombre'=>'required',
-            'documento'=>'required|mimes:pdf,docx,xls|max:1024'
+            'documento'=>'required|mimes:pdf,docx,xls,jgp,webp|max:1024',
+            'user_id'=>'required'
         ]);
 
-        $documento = $request->all();
+        $documento = request()->except('_token');
 
         if ($doc = $request->file('documento')) {
-            $rutaGuardarDocumento = "imagen/";
+            $rutaGuardarDocumento = "documentos_subidos/";
             $docGuardado = date('YmdHis'). "." . $doc->getClientOriginalExtension();
             $doc->move($rutaGuardarDocumento, $docGuardado);
-            
-            $documento['documento'] = "$docGuardado";
+
+            $documento['documento'] = $docGuardado;
         }
-        Documento::create($documento);
-        return redirect()->route('documentos.index');
+        Documento::insert($documento);
+        return redirect()->route('documentos.index')->with('creado','ok');
+
     }
 
     /**
@@ -80,6 +85,9 @@ class DocumentoController extends Controller
     public function edit($id)
     {
         //
+        $documento = Documento::find($id);
+
+        return view('documentos.editar', compact('documento'));
     }
 
     /**
@@ -92,6 +100,23 @@ class DocumentoController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $documento = request()->except('_token', '_method');
+
+        if ($doc = $request->file('documento')) {
+            $rutaGuardarDocumento = "documentos_subidos/";
+            $docGuardado = date('YmdHis'). "." . $doc->getClientOriginalExtension();
+            $doc->move($rutaGuardarDocumento, $docGuardado);
+
+            $documento['documento'] = $docGuardado;
+        }else {
+            unset($documento['documento']);
+        }
+
+        Documento::where('id_documento', '=', $id)->update($documento);
+
+        return redirect()->route('documentos.index');
+
     }
 
     /**
@@ -100,8 +125,10 @@ class DocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Documento $documento)
     {
         //
+        $documento->delete();
+        return redirect()->route('documentos.index')->with('eliminado','ok');
     }
 }

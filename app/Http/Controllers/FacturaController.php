@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Factura;
 use App\Models\Producto;
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
@@ -30,8 +31,9 @@ class FacturaController extends Controller
      */
     public function create()
     {
+        $clientes=Cliente::all();
         $productos=Producto::all();
-        return view('facturas.crear', compact('productos'));
+        return view('facturas.crear', compact('productos','clientes'));
         //
     }
 
@@ -52,7 +54,7 @@ class FacturaController extends Controller
         ]);
 
         Producto::create($request->all());
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')->with('creado','ok');
         
     }
 

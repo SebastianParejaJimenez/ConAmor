@@ -67,7 +67,7 @@ class UsuarioController extends Controller
     $user = User::create($input);
 /*     $user->assignRole($request->input('roles'));
  */
-    return redirect()->route('usuarios.index');
+    return redirect()->route('usuarios.index')->with('creado','ok');
 
 }
 

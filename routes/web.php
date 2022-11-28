@@ -9,6 +9,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\ClienteController;
 
 //Controladores
 
@@ -43,5 +44,6 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::resource('documentos', DocumentoController::class);
     Route::resource('facturas', FacturaController::class);
     Route::resource('roles', RolController::class);
+    Route::resource('clientes', ClienteController::class);
 
 });

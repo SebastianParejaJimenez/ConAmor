@@ -8,12 +8,16 @@
 @endpush
 @section('content')
 @php
+use App\Models\Cliente;
+$cant_cliente = Cliente::count();  
 use App\Models\User;
 $cant_usuarios = User::count();    
 use App\Models\Proveedor;
 $cant_prov = Proveedor::count();   
 use App\Models\Producto;
-$cant_prod = Producto::count();                                              
+$cant_prod = Producto::count();
+use App\Models\Documento;
+$cant_docs = Documento::count();                                                
 @endphp
 
     <section class="section">
@@ -63,7 +67,6 @@ $cant_prod = Producto::count();
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
@@ -85,16 +88,16 @@ $cant_prod = Producto::count();
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="far fa-file"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Documentos</h4>
+                                <h4>Clientes</h4>
                             </div>
                             <div class="card-body">
-                                0   
+                            {{$cant_cliente}}
                             </div>
-                            <a href="/proveedores" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                            <a href="/clientes" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                         </div>
                     </div>
                 </div>

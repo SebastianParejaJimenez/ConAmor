@@ -57,7 +57,7 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create($request->all());
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')->with('creado','ok');
     }
 
     /**

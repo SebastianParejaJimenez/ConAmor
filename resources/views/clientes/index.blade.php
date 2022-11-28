@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h3 class="page__heading">Proveedores</h3>
+        <h3 class="page__heading">Clientes</h3>
     </div>
     <div class="section-body">
         <div class="row">
@@ -11,41 +11,33 @@
                 <div class="card">
                     <div class="card-body">
                         @if($rol===1)
-                        <a class="btn btn-info" href="{{ route('proveedores.create') }}">Agregar Nuevo Usuario</a>
+                        <a class="btn btn-info" href="{{ route('clientes.create') }}">Agregar Nuevo Cliente</a>
                         @endif
 
                         <table class="table table-stripped mt-2">
                             <thead>
                                 <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th>
-                                <th>Correo</th>
-                                <th>Creado Por</th>
+                                <th>Documento de Identidad</th>
                                 <th>Hora de Creacion</th>
                                 @if($rol===1)
                                 <th>Acciones</th>
                                 @endif
                             </thead>
                             <tbody>
-                                @foreach($proveedores as $proveedor)
+                                @foreach($clientes as $cliente)
                                 <tr>
-                                    <td>{{$proveedor->nombre}}</td>
-                                    <td>{{$proveedor->telefono}}</td>
-                                    <td>{{$proveedor->direccion}}</td>
-                                    <td>{{$proveedor->correo}}</td>
+                                    <td>{{$cliente->nombre_cliente}}</td>
+                                    <td>{{$cliente->documento_identidad}}</td>
                                     <td>
-                                        <span class="badge badge-pill badge-primary">{{$proveedor->name}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-pill badge-light">{{$proveedor->created_at}}</span>
+                                        <span class="badge badge-pill badge-light">{{$cliente->created_at}}</span>
                                     </td>
 
 
                                     @if($rol===1)
 
                                     <td>
-                                        <a href="{{ route('proveedores.edit',$proveedor->id_proveedor) }}" class="btn btn-info">Editar</a>
-                                        <form action="{{ route('proveedores.destroy',$proveedor->id_proveedor) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('clientes.edit',$cliente->id_cliente) }}" class="btn btn-info">Editar</a>
+                                        <form action="{{ route('clientes.destroy',$cliente->id_cliente) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                             @csrf
 
                                             @method('DELETE')
@@ -59,7 +51,7 @@
                             </tbody>
                         </table>
                         <div class="pagination justify-content-end">
-                            {!! $proveedores->links() !!}
+                            {!! $clientes->links() !!}
                         </div>
 
 
@@ -103,7 +95,7 @@
         e.preventDefault();
 
         Swal.fire({
-            title: 'Estas Seguro de Eliminar el Proveedor?',
+            title: 'Estas Seguro de Eliminar el Cliente?',
             text: "No podras recuperarlo si lo eliminas.",
             icon: 'warning',
             showCancelButton: true,

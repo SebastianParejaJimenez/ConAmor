@@ -22,16 +22,21 @@
                                 <tbody>
                                 @foreach($documentos as $documento)
                                     <tr>
-                                        <td>{{$documento->id}}</td>
+                                        <td>{{$documento->id_documento}}</td>
                                         <td>{{$documento->nombre}}</td>
                                         <td>
-                                            <img src="/imagen/{{$documento->documento}}" width="60" alt="">
+                                            <object
+                                            type="application/pdf"
+                                            data="/documentos_subidos/{{$documento->documento}}"
+                                            width="300" height="300">
+                                            ERROR (no puede mostrarse el objeto)
+                                            </object>
                                         </td>
                                         
 
                                         <td>
-                                        <a href="{{ route('documentos.edit',$documentos->id)  }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('documentos.destroy',$documentos->id) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('documentos.edit',$documento->id_documento) }}" class="btn btn-info" >Editar</a>
+                                        <form action="{{ route('documentos.destroy',$documento->id_documento)}}" method="POST" class="formulario-eliminar" style="display: inline;">
 
                                                 @csrf
 
@@ -45,7 +50,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">
-                                {!! $documentos->links() !!}
+                                    {!! $documentos->links() !!}
                             </div>
 
 
@@ -59,7 +64,6 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
 
 @if(session('eliminado')== "ok")
@@ -75,6 +79,17 @@ Swal.fire({
 </script>
 @endif
 
+@if(session('creado')== "ok")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Creado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+</script>
+@endif
     <script>
 
 $('.formulario-eliminar').submit(function(e){

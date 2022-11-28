@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cliente;
 
-class RolController extends Controller
+class ClienteController extends Controller
 {
-    //
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {      
+    {
+        //
         $rol = Auth::user()->rol_id;
 
-        $roles = Rol::paginate(5);
-        return view('roles.index', compact('roles','rol')) ;
-    
+        $clientes = Cliente::paginate(5);
+        return view('clientes.index', compact('clientes', 'rol'));
     }
 
     /**
@@ -32,8 +30,9 @@ class RolController extends Controller
     public function create()
     {
         //
-        $rol=Rol::paginate(5);
-        return view('roles.crear' );
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
+        return view('clientes.crear'/* , compact('user') */);
     }
 
     /**
@@ -46,11 +45,12 @@ class RolController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required'
+            'nombre_cliente' => 'required',
+            'documento_identidad'=>'required'        
         ]);
 
-        Rol::create($request->all());
-        return redirect()->route('roles.index')->with('creado','ok');
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')->with('creado','ok');
     }
 
     /**
@@ -73,8 +73,8 @@ class RolController extends Controller
     public function edit($id)
     {
         //
-        $rol=Rol::find($id);
-        return view('roles.editar', compact('rol'));
+        $cliente = Cliente::find($id);
+        return view('clientes.editar',compact('cliente'));
     }
 
     /**
@@ -88,12 +88,14 @@ class RolController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required'
+            'nombre_cliente' => 'required',
+            'documento_identidad'=>'required'        
         ]);
-        $rol=Rol::find($id);
-        $rol->update($request->all());
-        return redirect()->route('roles.index');
 
+        $cliente = Cliente::find($id);
+
+        $cliente->update($request->all());
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -105,7 +107,7 @@ class RolController extends Controller
     public function destroy($id)
     {
         //
-        Rol::find($id)->delete();
-        return redirect()->route('roles.index')->with('eliminado','ok');
+        Cliente::find($id)->delete();
+        return redirect()->route('clientes.index')->with('eliminado','ok');
     }
 }

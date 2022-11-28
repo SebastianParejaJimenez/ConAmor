@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                         @if($rol===1)
-                        <a class="btn btn-info" href="{{ route('productos.create') }}">Agregar Nuevo Usuario</a>
+                        <a class="btn btn-info" href="{{ route('productos.create') }}">Agregar Nuevo Producto</a>
                         @endif
                             <table class="table table-stripped mt-2">
                                 <thead>
@@ -86,8 +86,19 @@ Swal.fire({
 
 </script>
 @endif
+@if(session('creado')== "ok")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Creado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+</script>
+@endif
 
-    <script>
+<script>
 
 $('.formulario-eliminar').submit(function(e){
 e.preventDefault();

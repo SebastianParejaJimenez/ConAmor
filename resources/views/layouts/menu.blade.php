@@ -7,8 +7,15 @@
 </li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+    <a class="nav-link" href="/clientes">
+        <i class="fas fa-user-tag"></i><span>Clientes</span>
+    </a>
+
+</li>
+
+<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
     <a class="nav-link" href="/facturas">
-        <i class="fas fa-money-bill"></i><span>Facturacion</span>
+        <i class="fas fa-money-bill"></i><span>Facturación</span>
     </a>
 </li>
 <li class="menu-header">Usuarios</li>
