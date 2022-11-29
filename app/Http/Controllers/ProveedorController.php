@@ -50,7 +50,7 @@ class ProveedorController extends Controller
         //
         request()->validate([
             'nombre' => 'required',
-            'telefono'=>'required',
+            'telefono'=>'required|numeric|min:1',
             'correo'=>'required',
             'direccion'=>'required',
             'user_id'=>'required'

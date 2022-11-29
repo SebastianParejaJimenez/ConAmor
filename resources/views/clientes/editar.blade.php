@@ -8,7 +8,7 @@
         <div class="section-body">
             
         <h2 class="section-title">Formulario para Editar</h2>
-            <p class="section-lead">El siguiente formulario le permitira editar el Producto seleccionado.</p> 
+            <p class="section-lead">El siguiente formulario le permitira editar el Cliente seleccionado.</p> 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">

@@ -53,7 +53,7 @@ class ProductoController extends Controller
         request()->validate([
             'nombre'=>'required',
             'tipo'=>'required',
-            'precio'=>'required',
+            'precio'=>'required|numeric|min:1',
             'user_id'=>'required'
         ]);
 

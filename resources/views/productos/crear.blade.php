@@ -49,7 +49,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Precio</label>
-                                    <input type="number" name="precio" class="form-control">
+                                    <input type="number" name="precio" class="form-control" >
                                 </div>
                             </div>
 
