@@ -47,7 +47,7 @@ class DocumentoController extends Controller
         //
         request()->validate([
             'nombre'=>'required',
-            'documento'=>'required|mimes:pdf,docx,xls,jgp,webp|max:1024',
+            'documento'=>'required|mimes:pdf,txt,docx,xls,jgp,webp|max:1024',
             'user_id'=>'required'
         ]);
 

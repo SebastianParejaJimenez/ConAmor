@@ -8,7 +8,8 @@
         <div class="section-body">
             
         <h2 class="section-title">Formulario para Crear</h2>
-            <p class="section-lead">El siguiente formulario le permitira crear el Proveedor a desear.</p>            <div class="row">
+            <p class="section-lead">El siguiente formulario le permitira crear el Proveedor a desear.</p>            
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">

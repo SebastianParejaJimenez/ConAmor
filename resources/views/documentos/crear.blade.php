@@ -43,7 +43,7 @@
                                     <div class="jumbotron text-center">
                                         <h2>Seleccionar Documento</h2>
 
-                                        <input name="documento" id="documento" type='file' class="hidden" accept=".pdf, .txt, .docsx, .jpg, .png, .jpeg" />
+                                        <input name="documento" id="documento" type='file' class="hidden" accept=".pdf, .txt, .docx, .jpg, .xls" />
                                     </div>
                                 </div>
 

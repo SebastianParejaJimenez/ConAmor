@@ -113,16 +113,7 @@ $cant_docs = Documento::count();
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias ullam accusantium inventore cumque id nulla amet exercitationem voluptate numquam sunt, impedit explicabo officia delectus. Expedita odit vitae incidunt laboriosam eligendi.
-                            Repellendus iusto porro amet mollitia unde eaque cupiditate eius commodi eveniet illo deserunt voluptates nisi placeat ex omnis inventore sunt, fuga, cumque facilis laborum fugit. Adipisci eveniet inventore libero hic.
-                            Molestiae, iure veniam non ipsa hic nulla atque! Quae, dolorum possimus. Laborum ipsum rerum natus similique, perferendis tempora a rem. Nihil commodi ipsa culpa similique architecto quod placeat voluptas excepturi.
-                            Excepturi numquam ducimus aspernatur totam quisquam, voluptatem voluptatum ea omnis nobis ratione. Magni non adipisci nulla cupiditate repellat temporibus? Earum quidem nostrum quia ipsam dolorem cumque harum pariatur numquam odit!
-                            Pariatur natus non quasi earum reiciendis laborum repellendus odio quam saepe molestiae similique reprehenderit laboriosam, nesciunt dicta ipsum modi quaerat ea aliquid rerum magnam id doloremque placeat nostrum veniam? Eligendi!
-                            Cum esse dicta accusantium ipsum alias magni! Cumque suscipit nihil quisquam dolorum maxime explicabo incidunt atque fugit, officia dolorem, vel autem sequi repellendus vitae odit est perspiciatis necessitatibus pariatur delectus?
-                            Similique quaerat quae nostrum dolores! Illo vel ut est atque suscipit dolor eligendi facilis. Consequuntur ad hic neque animi excepturi tempora sed dolore quo distinctio sunt? Possimus doloremque velit qui.
-                            Numquam quibusdam suscipit facilis unde culpa quam vero iste et doloremque, ea voluptate libero! Ullam laboriosam, esse id tempore, suscipit mollitia repellendus, soluta nulla possimus quis nemo pariatur cum culpa!
-                            Nam assumenda molestiae libero iusto non earum laborum eaque nobis dignissimos. Incidunt expedita ea cumque? Nam officia cum corrupti praesentium commodi facere quos, ad assumenda beatae quidem rerum soluta quibusdam.
-                            Illo, laudantium. Aspernatur sed mollitia ratione minima quo fuga impedit voluptatem error aliquid nobis, in incidunt labore provident totam exercitationem quia harum dolore distinctio odit fugit? Ullam rem corrupti quam?
+                            
                         </div>                            
                     </div>                            
                 </div>                            

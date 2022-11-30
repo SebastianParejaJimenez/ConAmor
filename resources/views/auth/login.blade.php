@@ -57,8 +57,8 @@ Login
                 </button>
             </div>
             <div class="mt-5 text-muted text-center">
-                ¿No estas Registrado? <a href="{{ route('register') }}">Registrarse</a>
-            </div>
+<!--                 ¿No estas Registrado? <a href="{{ route('register') }}">Registrarse</a>
+ -->            </div>
         </form>
     </div>
 </div>
