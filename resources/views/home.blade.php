@@ -108,17 +108,17 @@ $cant_docs = Documento::count();
             </div>
         </div>
 
-        <div class="section-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            
-                        </div>                            
-                    </div>                            
-                </div>                            
-            </div>                            
-        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Bar Chart</h4>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="myChart2"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
     </section>
 @endsection
 @push('scripts')
