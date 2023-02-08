@@ -111,7 +111,7 @@ $cant_docs = Documento::count();
         <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Bar Chart</h4>
+                    <h4>grafica</h4>
                   </div>
                   <div class="card-body">
                     <canvas id="myChart2"></canvas>
