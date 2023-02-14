@@ -6,7 +6,6 @@
             <h1>Crear</h1>
           </div>
         <div class="section-body">
-            
         <h2 class="section-title">Formulario para Crear</h2>
             <p class="section-lead">El siguiente formulario le permitira crear el Producto a desear.</p>            
             <div class="row">

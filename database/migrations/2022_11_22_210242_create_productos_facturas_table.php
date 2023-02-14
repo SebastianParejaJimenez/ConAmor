@@ -15,7 +15,7 @@ class CreateProductosFacturasTable extends Migration
     {
         Schema::create('productos_facturas', function (Blueprint $table) {
             $table->id('id_productos_factura');
-            $table->integer('total_factura');
+            $table->integer('total_producto');
             $table->integer('cantidad');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id_cliente')->on('clientes');

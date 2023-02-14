@@ -109,17 +109,64 @@ $cant_docs = Documento::count();
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
+            <div class="card">
                   <div class="card-header">
-                    <h4>grafica</h4>
+                    <h4>Graficas</h4>
                   </div>
-                  <div class="card-body">
-                    <canvas id="myChart2"></canvas>
-                  </div>
+                <div>
+                    <canvas id="myChart"></canvas>
                 </div>
-              </div>
             </div>
+        </div>
+            
+    </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    datasets: [{
+      label: 'Statistics',
+      data: [1, 2, 3, 4, 5, 6, 7,8,9,10],
+      borderWidth: 2,
+      backgroundColor: '#6777ef',
+      borderColor: '#6777ef',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#ffffff',
+      pointRadius: 4
+    }]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+          color: '#f2f2f2',
+        },
+        ticks: {
+          beginAtZero: true,
+          stepSize: 150
+        }
+      }],
+      xAxes: [{
+        ticks: {
+          display: false
+        },
+        gridLines: {
+          display: false
+        }
+      }]
+    },
+  }
+});
+</script>
 @endsection
 @push('scripts')
     <!-- JS Libraies -->

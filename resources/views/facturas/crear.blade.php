@@ -6,8 +6,9 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <section class="section">
-<div class="section-header">
-</div>
+    <div class="section-header">
+        <h1>Facturacion</h1>
+    </div>
         <div class="section-body">
         <h2 class="section-title">Generar Facturas</h2>
             <p class="section-lead">El siguiente formulario le permitira Generar Facturas según los Productos a Seleccionar.</p>         
@@ -29,7 +30,9 @@
                         </div>
                         @endif
 
-                        <div class="row clearfix">
+                    <form>
+                            @csrf                        
+                            <div class="row clearfix">
                             <div class="col-md-12">
                             <table class="table table-sm table-hover" id="tab_logic">
                                 <thead>
@@ -46,10 +49,10 @@
                                     <td>1</td>
 
                                     <td>                                    
-                                        <select name='product[]' id="nombre" class="form-control">
-                                        <option value="" disabled>Seleccione una Opcion</option>
+                                        <select name='producto[]' id="nombre" class="form-control" onchange="Traer_Precio()">
+                                        <option value="" disabled selected>Seleccione una Opcion</option>
                                         @foreach($productos as $producto)
-                                        <option value="{{$producto->id_producto}}">{{$producto->nombre}}</option>
+                                        <option value="{{$producto->precio}}">{{$producto->nombre}}</option>
                                         @endforeach
                                         </select> 
                                         @if(empty($producto))
@@ -57,8 +60,8 @@
                                         @endif 
                                     </td>
 
-                                    <td><input type="number" name='qty[]' placeholder='Ingresa la Cantidad a llevar' class="form-control qty" step="0" min="0"/></td>
-                                    <td><input type="number" name='price[]' placeholder='Precio del Producto' class="form-control price" step="0.00" min="0"/></td>
+                                    <td><input type="number" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad" step="0" min="0"/></td>
+                                    <td><input type="number" name='precio[]' placeholder='Precio del Producto' id="demo" class="form-control precio" readonly/></td>
                                     <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
                                 </tr>
                                 <tr id='addr1'></tr>
@@ -68,8 +71,8 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-md-12">
-                            <button id="add_row" class="btn btn-primary pull-left">Añadir Fila</button>
-                            <button id='delete_row' class="btn btn-primary pull-right ">Eliminar Fila</button>
+                            <input type="button" id="add_row" class="btn btn-primary pull-left" value="Añadir Fila">
+                            <input type="button" id='delete_row' class="btn btn-primary pull-right " value="Eliminar Fila">
                             </div>
                         </div>
                     
@@ -102,14 +105,13 @@
                                         </select>  
                                     </div>
                             </div>
-
+                    </form>
                             <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                         <button type="button" class="btn btn-primary">Guardar</button>
                         <a href="/facturas" class="btn btn-secondary">Cancelar</a>
 
                     </div>
                     </div>
-                    </form>
 
 
 
@@ -151,9 +153,9 @@ function calc()
         var html = $(this).html();
         if(html!='')
         {
-            var qty = $(this).find('.qty').val();
-            var price = $(this).find('.price').val();
-            $(this).find('.total').val(qty*price);
+            var cantidad = $(this).find('.cantidad').val();
+            var precio = $(this).find('.precio').val();
+            $(this).find('.total').val(cantidad*precio);
             
             calc_total();
         }
@@ -170,6 +172,12 @@ function calc_total()
     tax_sum=total/100*$('#tax').val();
     $('#tax_amount').val(tax_sum.toFixed(2));
     $('#total_amount').val((tax_sum+total).toFixed(2));
+}
+
+function Traer_Precio()
+{
+    var precio = document.getElementById("nombre").value;
+    document.getElementById("demo").setAttribute('value', precio);
 }
 </script>
 
