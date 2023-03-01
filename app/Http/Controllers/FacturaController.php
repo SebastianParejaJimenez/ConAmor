@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Factura;
+use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
@@ -47,14 +48,31 @@ class FacturaController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required',
-            'tipo'=>'required',
-            'precio'=>'required'
-
+            'total'=>'required',
         ]);
 
-        Producto::create($request->all());
-        return redirect()->route('productos.index')->with('creado','ok');
+/*         Factura::create($request->all());
+ */        
+        $total = $request->total_cantidad;
+        $producto= $request->producto;
+        $cantidad = $request->cantidad;
+/*         $precio = $request->precio;
+ */     
+        $cliente = $request->cliente_id;
+
+        for($i=0;$i<2;$i++){
+            $datasave=[
+                'producto_id'=>$producto[$i],
+                'total_producto'=>$total[$i],
+                'cantidad'=>$cantidad[$i],
+                'cliente_id'=>$cliente, 
+                'factura_id'=>1
+            ];
+                
+
+            DB::table('productos_facturas')->insert($datasave);
+            }
+            // return redirect('/articulos');
         
     }
 
@@ -101,5 +119,28 @@ class FacturaController extends Controller
     public function destroy($id)
     {
         //
+        Factura::find($id)->delete();
+        return redirect()->route('facturas.index')->with('eliminado','ok');
     }
+
+/*         public function crear(Request $request){
+        //
+
+        $producto= $request->producto;
+        $cantidad = $request->cantidad;
+        $precio = $request->precio;
+        $total = $request->total;
+
+        for($i=0;$i<2;$i++){
+            $datasave=[
+                'Codigo'=>$Codigo[$i],
+                'Descripcion'=>$Descripcion[$i],
+                'Cantidad'=>$Cantidad[$i],
+                'Precio'=>$Precio[$i],
+            ];
+            // DB::table('articulos')->insert($datasave);
+            }
+            return dd($datasave);
+            // return redirect('/articulos');
+    } */
 }

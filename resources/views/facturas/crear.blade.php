@@ -29,8 +29,8 @@
 
                         </div>
                         @endif
-
-                    <form>
+ 
+                    <form action="{{ route('facturas.store')}}" method="POST">
                             @csrf                        
                             <div class="row clearfix">
                             <div class="col-md-12">
@@ -49,10 +49,10 @@
                                     <td>1</td>
 
                                     <td>                                    
-                                        <select name='producto[]' id="nombre" class="form-control" onchange="Traer_Precio()">
+                                        <select name='producto[]' id="nombre" class="form-control">
                                         <option value="" disabled selected>Seleccione una Opcion</option>
                                         @foreach($productos as $producto)
-                                        <option value="{{$producto->precio}}">{{$producto->nombre}}</option>
+                                        <option value="{{$producto->id_producto}}">{{$producto->nombre}}</option>
                                         @endforeach
                                         </select> 
                                         @if(empty($producto))
@@ -60,9 +60,9 @@
                                         @endif 
                                     </td>
 
-                                    <td><input type="number" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad" step="0" min="0"/></td>
-                                    <td><input type="number" name='precio[]' placeholder='Precio del Producto' id="demo" class="form-control precio" readonly/></td>
-                                    <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
+                                    <td><input type="" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                    <td><input type="" name='precio[]' placeholder='Precio del Producto' id="demo" class="form-control precio"/></td>
+                                    <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value=""/></td>
                                 </tr>
                                 <tr id='addr1'></tr>
                                 </tbody>
@@ -87,7 +87,7 @@
                                     <table class="table table-bordered table-hover" id="tab_logic_total">
                                         <tbody>
                                         <tr>
-                                            <td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
+                                            <td class="text-center"><input name='total' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
                                         </tr>
                                         </tbody>
                                     </table>                                    
@@ -107,7 +107,7 @@
                             </div>
                     </form>
                             <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                         <a href="/facturas" class="btn btn-secondary">Cancelar</a>
 
                     </div>
@@ -155,8 +155,10 @@ function calc()
         {
             var cantidad = $(this).find('.cantidad').val();
             var precio = $(this).find('.precio').val();
+            var calctot = cantidad*precio
             $(this).find('.total').val(cantidad*precio);
-            
+            document.getElementById("total_calc").setAttribute('value', calctot);
+
             calc_total();
         }
     });

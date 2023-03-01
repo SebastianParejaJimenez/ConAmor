@@ -23,7 +23,6 @@ class CreateProductosFacturasTable extends Migration
             $table->foreign('producto_id')->references('id_producto')->on('productos');
             $table->unsignedBigInteger('factura_id');
             $table->foreign('factura_id')->references('id_factura')->on('facturas');
-            $table->timestamps();
         });
     }
 

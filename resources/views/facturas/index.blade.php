@@ -22,7 +22,7 @@
                                 <tbody>
                                 @foreach($facturas as $factura)
                                     <tr>
-                                        <td>{{$factura->id}}</td>
+                                        <td>{{$factura->id_factura}}</td>
                                         <td>{{$factura->total}}</td>
 
                                         <td>
