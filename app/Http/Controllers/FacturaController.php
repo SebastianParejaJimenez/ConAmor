@@ -21,8 +21,17 @@ class FacturaController extends Controller
     {
         //
         $usuario = Auth::user()->name;
-        $facturas=Factura::paginate(10);
-        return view('facturas.index', compact('facturas', 'usuario'));
+        $facturas = Factura::paginate(10);
+
+        $factura_all = DB::table('productos_facturas')
+        ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total','clientes.nombre_cliente' ,'facturas.created_at')
+        ->join('facturas', 'productos_facturas.factura_id', '=', 'facturas.id_factura')
+        ->join('productos', 'productos_facturas.producto_id', '=', 'productos.id_producto')
+        ->join('clientes', 'productos_facturas.cliente_id', '=', 'clientes.id_cliente')
+        ->paginate(5);
+
+
+        return view('facturas.index', compact('factura_all', 'usuario'));
     }
 
     /**
@@ -32,9 +41,9 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        $clientes=Cliente::all();
-        $productos=Producto::all();
-        return view('facturas.crear', compact('productos','clientes'));
+        $clientes = Cliente::all();
+        $productos = Producto::all();
+        return view('facturas.crear', compact('productos', 'clientes'));
         //
     }
 
@@ -48,32 +57,39 @@ class FacturaController extends Controller
     {
         //
         request()->validate([
-            'total'=>'required',
+            'total' => 'required',
+            'cantidad' => 'required',
+            'total' => 'required'
         ]);
 
-/*         Factura::create($request->all());
- */        
+        Factura::create($request->all());
+         
+
+
+        $id_factura = Factura::max('id_factura');
+
+
         $total = $request->total_cantidad;
-        $producto= $request->producto;
+        $producto = $request->producto;
         $cantidad = $request->cantidad;
-/*         $precio = $request->precio;
- */     
+        /*         $precio = $request->precio;
+ */
         $cliente = $request->cliente_id;
 
-        for($i=0;$i<2;$i++){
-            $datasave=[
-                'producto_id'=>$producto[$i],
-                'total_producto'=>$total[$i],
-                'cantidad'=>$cantidad[$i],
-                'cliente_id'=>$cliente, 
-                'factura_id'=>1
+        for ($i = 0; $i < 2; $i++) {
+            $datasave = [
+                'producto_id' => $producto[$i],
+                'total_producto' => $total[$i],
+                'cantidad' => $cantidad[$i],
+                'cliente_id' => $cliente,
+                'factura_id' => $id_factura
             ];
-                
+
 
             DB::table('productos_facturas')->insert($datasave);
-            }
-            // return redirect('/articulos');
-        
+        }
+        // return redirect('/articulos');
+
     }
 
     /**
@@ -120,10 +136,10 @@ class FacturaController extends Controller
     {
         //
         Factura::find($id)->delete();
-        return redirect()->route('facturas.index')->with('eliminado','ok');
+        return redirect()->route('facturas.index')->with('eliminado', 'ok');
     }
 
-/*         public function crear(Request $request){
+    /*         public function crear(Request $request){
         //
 
         $producto= $request->producto;

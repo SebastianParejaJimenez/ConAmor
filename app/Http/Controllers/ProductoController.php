@@ -18,10 +18,10 @@ class ProductoController extends Controller
     {
         $rol = Auth::user()->rol_id;
 
-        $productos = DB::table('productos')
-        ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
-        ->join('users', 'productos.user_id', '=', 'users.id')
-        ->paginate(5);
+            $productos = DB::table('productos')
+            ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
+            ->join('users', 'productos.user_id', '=', 'users.id')
+            ->paginate(5);
         $productos5=Producto::paginate(5);
         return view('productos.index', compact('productos','rol'));
     

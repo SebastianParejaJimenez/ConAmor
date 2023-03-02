@@ -37,7 +37,6 @@
                                         </td>
                                         <td>
                                         <span class="badge badge-pill badge-light">{{$producto->created_at}}</span>
-
                                         </td>
                                         @if($rol===1)
 

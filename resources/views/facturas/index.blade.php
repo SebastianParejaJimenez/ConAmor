@@ -16,14 +16,26 @@
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
-                                    <th>Total</th>
+                                    <th>Productos</th>
+                                    <th>Precio</th>
+                                    <th>Cantidades</th>
+                                    <th>Sub Total de la Factura</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha de Creacion</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
-                                @foreach($facturas as $factura)
+                                @foreach($factura_all as $factura)
                                     <tr>
                                         <td>{{$factura->id_factura}}</td>
+                                        <td>{{$factura->nombre}}</td>
+                                        <td>{{$factura->precio}}</td>
+                                        <td>{{$factura->cantidad}}</td>
                                         <td>{{$factura->total}}</td>
+                                        <td><span class="badge badge-pill badge-primary">{{$factura->nombre_cliente}}</span></td>
+                                        <td>
+                                        <span class="badge badge-pill badge-light">{{$factura->created_at}}</span>
+                                        </td>
 
                                         <td>
                                         <a href="{{ route('facturas.edit',$factura->id_factura) }}" class="btn btn-info" >Editar</a>
@@ -40,7 +52,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">
-                                {!! $facturas->links() !!}
+                                {!! $factura_all->links() !!}
                             </div>
 
 
