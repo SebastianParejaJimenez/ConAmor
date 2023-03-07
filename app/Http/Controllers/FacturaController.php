@@ -89,6 +89,7 @@ class FacturaController extends Controller
             DB::table('productos_facturas')->insert($datasave);
         }
         // return redirect('/articulos');
+        return redirect()->route('facturas.index')->with('creado','ok');
 
     }
 

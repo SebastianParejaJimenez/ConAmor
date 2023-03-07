@@ -43,7 +43,7 @@ $cant_docs = Documento::count();
                             <div class="card-body">
                             {{$cant_usuarios}}
                             </div>
-                            <a href="/proveedores" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                            <a href="/usuarios" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ $cant_docs = Documento::count();
                             {{$cant_prod}}
 
                             </div>
-                            <a href="/proveedores" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                            <a href="/productos" ><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                         </div>
                     </div>
                 </div>

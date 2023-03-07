@@ -45,5 +45,5 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::resource('facturas', FacturaController::class);
     Route::resource('roles', RolController::class);
     Route::resource('clientes', ClienteController::class);
-
 });
+
