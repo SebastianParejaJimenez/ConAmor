@@ -123,6 +123,7 @@ class ComposerStaticInit6f4eee6e80b4f1d416303ad1d22ecdd3
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
+            'LaravelDaily\\LaravelCharts\\' => 27,
         ),
         'I' => 
         array (
@@ -396,6 +397,10 @@ class ComposerStaticInit6f4eee6e80b4f1d416303ad1d22ecdd3
         'Laravel\\Sail\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
+        ),
+        'LaravelDaily\\LaravelCharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laraveldaily/laravel-charts/src',
         ),
         'InfyOm\\StislaPreset\\' => 
         array (
@@ -2732,6 +2737,8 @@ class ComposerStaticInit6f4eee6e80b4f1d416303ad1d22ecdd3
         'InfyOm\\StislaPreset\\StislaPreset' => __DIR__ . '/..' . '/infyomlabs/laravel-ui-stisla/src/StislaPreset.php',
         'InfyOm\\StislaPreset\\StislaPresetServiceProvider' => __DIR__ . '/..' . '/infyomlabs/laravel-ui-stisla/src/StislaPresetServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'LaravelDaily\\LaravelCharts\\Classes\\LaravelChart' => __DIR__ . '/..' . '/laraveldaily/laravel-charts/src/Classes/LaravelChart.php',
+        'LaravelDaily\\LaravelCharts\\LaravelChartsServiceProvider' => __DIR__ . '/..' . '/laraveldaily/laravel-charts/src/LaravelChartsServiceProvider.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
         'Laravel\\Sail\\Console\\PublishCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/PublishCommand.php',
         'Laravel\\Sail\\SailServiceProvider' => __DIR__ . '/..' . '/laravel/sail/src/SailServiceProvider.php',

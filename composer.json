@@ -12,7 +12,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "laraveldaily/laravel-charts": "^0.1.29"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

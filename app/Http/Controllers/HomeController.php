@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $chart_options = [
+            'chart_title' => 'Control Mensual',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Factura',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+            'chart_color' => '103, 119, 239',
+            'filter_period' => 'year',
+            'aggregate_function' => 'sum',
+            'aggregate_field' => 'total',
+        ];
+        $chart = new LaravelChart($chart_options);
+        
         $rol = Auth::user()->rol_id;
-        return view('home', compact('rol'));
+        return view('home', compact('rol', 'chart'));
     }
 }

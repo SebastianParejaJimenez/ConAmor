@@ -475,6 +475,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'laraveldaily/laravel-charts' => array(
+            'pretty_version' => '0.1.29',
+            'version' => '0.1.29.0',
+            'reference' => 'ed91d6e7dedabec8eb3c71cca0a22c8616faea01',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laraveldaily/laravel-charts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'league/commonmark' => array(
             'pretty_version' => '2.3.7',
             'version' => '2.3.7.0',

@@ -22,6 +22,7 @@ class FacturaController extends Controller
         //
         $usuario = Auth::user()->name;
         $facturas = Factura::paginate(10);
+        $factura = Factura::paginate(5);
 
         $factura_all = DB::table('productos_facturas')
         ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total','clientes.nombre_cliente' ,'facturas.created_at')
@@ -31,7 +32,7 @@ class FacturaController extends Controller
         ->paginate(5);
 
 
-        return view('facturas.index', compact('factura_all', 'usuario'));
+        return view('facturas.index', compact('factura', 'usuario'));
     }
 
     /**

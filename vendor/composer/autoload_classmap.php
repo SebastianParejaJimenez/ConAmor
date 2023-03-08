@@ -2211,6 +2211,8 @@ return array(
     'InfyOm\\StislaPreset\\StislaPreset' => $vendorDir . '/infyomlabs/laravel-ui-stisla/src/StislaPreset.php',
     'InfyOm\\StislaPreset\\StislaPresetServiceProvider' => $vendorDir . '/infyomlabs/laravel-ui-stisla/src/StislaPresetServiceProvider.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+    'LaravelDaily\\LaravelCharts\\Classes\\LaravelChart' => $vendorDir . '/laraveldaily/laravel-charts/src/Classes/LaravelChart.php',
+    'LaravelDaily\\LaravelCharts\\LaravelChartsServiceProvider' => $vendorDir . '/laraveldaily/laravel-charts/src/LaravelChartsServiceProvider.php',
     'Laravel\\Sail\\Console\\InstallCommand' => $vendorDir . '/laravel/sail/src/Console/InstallCommand.php',
     'Laravel\\Sail\\Console\\PublishCommand' => $vendorDir . '/laravel/sail/src/Console/PublishCommand.php',
     'Laravel\\Sail\\SailServiceProvider' => $vendorDir . '/laravel/sail/src/SailServiceProvider.php',

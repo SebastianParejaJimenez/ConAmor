@@ -1,9 +1,9 @@
 <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="/home">Software Produccion</a>
+            <a href="/home">ConAmor</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">S/W</a>
+            <a href="index.html">C.A</a>
         </div>
     <ul class="sidebar-menu">
         @include('layouts.menu')
