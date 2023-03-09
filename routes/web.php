@@ -47,3 +47,5 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::resource('clientes', ClienteController::class);
 });
 
+Route::get('/facturas/reportPDF', [App\Http\Controllers\FacturaController::class, 'report'])->name('facturas.report');
+

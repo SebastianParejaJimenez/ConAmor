@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Factura;
@@ -21,18 +22,19 @@ class FacturaController extends Controller
     {
         //
         $usuario = Auth::user()->name;
-        $facturas = Factura::paginate(10);
-        $factura = Factura::paginate(5);
+        $facturas = DB::table('facturas')
+        ->select('id_factura', 'total' ,'facturas.created_at', 'clientes.nombre_cliente')
+        ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
+        ->paginate(5);
 
         $factura_all = DB::table('productos_facturas')
-        ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total','clientes.nombre_cliente' ,'facturas.created_at')
+        ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total' ,'facturas.created_at')
         ->join('facturas', 'productos_facturas.factura_id', '=', 'facturas.id_factura')
         ->join('productos', 'productos_facturas.producto_id', '=', 'productos.id_producto')
-        ->join('clientes', 'productos_facturas.cliente_id', '=', 'clientes.id_cliente')
         ->paginate(5);
 
 
-        return view('facturas.index', compact('factura', 'usuario'));
+        return view('facturas.index', compact('facturas', 'usuario'));
     }
 
     /**
@@ -60,7 +62,8 @@ class FacturaController extends Controller
         request()->validate([
             'total' => 'required',
             'cantidad' => 'required',
-            'total' => 'required'
+            'total' => 'required',
+            'cliente_id'=>'required',
         ]);
 
         Factura::create($request->all());
@@ -82,7 +85,6 @@ class FacturaController extends Controller
                 'producto_id' => $producto[$i],
                 'total_producto' => $total[$i],
                 'cantidad' => $cantidad[$i],
-                'cliente_id' => $cliente,
                 'factura_id' => $id_factura
             ];
 
@@ -161,4 +163,13 @@ class FacturaController extends Controller
             return dd($datasave);
             // return redirect('/articulos');
     } */
+
+    public function report()
+    {
+        //
+        $factura=Factura::all();
+        $pdf = Pdf::loadView('facturas.report', compact('factura'));
+        return $pdf->stream('factura_detalle.pdf');
+    }
+
 }

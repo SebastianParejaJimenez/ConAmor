@@ -17,21 +17,25 @@
                                 <thead>
                                     <th>ID</th>
                                     <th>Total</th>
-                                    <th>Acciones</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha de Creacion</th>
+                                    <th class="text-start">Acciones</th>
                                 </thead>
                                 <tbody>
-                                @foreach($factura as $detalle)
+                                @foreach($facturas as $factura)
                                     <tr>
-                                        <td>{{$detalle->id_factura}}</td>
-                                        <td>{{$detalle->total}}</td>
-                                        <td><span class="badge badge-pill badge-primary">{{$detalle->nombre_cliente}}</span></td>
+                                        <td>{{$factura->id_factura}}</td>
+                                        <td>{{$factura->total}}</td>
                                         <td>
-                                        <span class="badge badge-pill badge-light">{{$detalle->created_at}}</span>
+                                            <span class="badge badge-pill badge-primary">{{$factura->nombre_cliente}} </span></td>
+                                        <td>
+                                        <span class="badge badge-pill badge-light">{{$factura->created_at}}</span>
                                         </td>
 
                                         <td>
-                                        <a href="{{ route('facturas.edit',$detalle->id_factura) }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('facturas.destroy',$detalle->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
+                                        <a href="{{ route('facturas.report') }}" class="btn btn-success" >Detalles</a>
+                                        <a href="{{ route('facturas.edit',$factura->id_factura) }}" class="btn btn-info" >Editar</a>
+                                        <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @csrf
 
                                                 @method('DELETE')
@@ -44,7 +48,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">
-                                {!! $detalle->links() !!}
+                                {!! $facturas->links() !!}
                             </div>
 
 
