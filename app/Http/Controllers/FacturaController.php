@@ -27,11 +27,7 @@ class FacturaController extends Controller
         ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
         ->paginate(5);
 
-        $factura_all = DB::table('productos_facturas')
-        ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total' ,'facturas.created_at')
-        ->join('facturas', 'productos_facturas.factura_id', '=', 'facturas.id_factura')
-        ->join('productos', 'productos_facturas.producto_id', '=', 'productos.id_producto')
-        ->paginate(5);
+
 
 
         return view('facturas.index', compact('facturas', 'usuario'));
@@ -164,12 +160,18 @@ class FacturaController extends Controller
             // return redirect('/articulos');
     } */
 
-    public function report()
+    public function pdf()
     {
-        //
-        $factura=Factura::all();
-        $pdf = Pdf::loadView('facturas.report', compact('factura'));
-        return $pdf->stream('factura_detalle.pdf');
+        $factura_all = DB::table('productos_facturas')
+        ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total' ,'facturas.created_at')
+        ->join('facturas', 'productos_facturas.factura_id', '=', 'facturas.id_factura')
+        ->join('productos', 'productos_facturas.producto_id', '=', 'productos.id_producto')
+        ->where('factura_id', 1)
+        ->get();
+
+        $f = Factura::all();
+        $pdf = Pdf::loadView('facturas.pdf', compact('f'));
+        return $pdf->stream();
     }
 
 }

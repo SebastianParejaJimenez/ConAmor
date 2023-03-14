@@ -33,7 +33,6 @@
                                         </td>
 
                                         <td>
-                                        <a href="{{ route('facturas.report') }}" class="btn btn-success" >Detalles</a>
                                         <a href="{{ route('facturas.edit',$factura->id_factura) }}" class="btn btn-info" >Editar</a>
                                         <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                                 @csrf
