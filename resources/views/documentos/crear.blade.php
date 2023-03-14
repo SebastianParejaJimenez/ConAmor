@@ -8,14 +8,15 @@
                 <div class="card">
                     <div class="card-body">
                         <!--                         Para atrapar errores y mostrarlos
- --> @if($errors->any())
-                        <div class="alert alert-dark alert-dimissible fade show" role="alert">
-                            <strong>Revise los Campos!</strong>
+ -->                     @if($errors->any())
+ <div class="alert " role="alert">
                             @foreach($errors->all() as $error)
-                            <span class="badge badge-danger">{{$error}}</span>
-                            <button class="close" data-dismiss="alert" arial-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                            <button type="button" data-dismiss="alert" arial-label="Close"
+                                        class="btn btn-primary btn-icon icon-left">
+                                        <i class="fas fa-eye"></i> Error: <span
+                                            class="badge badge-transparent">{{$error}}</span>
                             </button>
+
                             @endforeach
 
                         </div>

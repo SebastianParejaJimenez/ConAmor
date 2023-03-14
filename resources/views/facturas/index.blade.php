@@ -33,15 +33,9 @@
                                         </td>
 
                                         <td>
-                                        <a href="{{ route('facturas.edit',$factura->id_factura) }}" class="btn btn-info" >Editar</a>
-                                        <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
-                                                @csrf
-
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Borrar</button>
-
-                                            </form>
-                                        </td>
+                                        <a href="{{ route('facturas.pdf',$factura->id_factura) }}" class="btn btn-success" >Detalles Factura</a>
+    
+                                    </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -63,41 +57,15 @@
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
 
-@if(session('eliminado')== "ok")
+@if(session('creado')== "ok")
 <script>
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'Eliminado con Exito!',
-  showConfirmButton: false,
-  timer: 900
-})
-
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Creado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
 </script>
 @endif
-
-    <script>
-
-$('.formulario-eliminar').submit(function(e){
-e.preventDefault();
-
-Swal.fire({
-  title: 'Estas Seguro de Eliminar el Proveedor?',
-  text: "No podras recuperarlo si lo eliminas.",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Confirmar',
-  cancelButtonText: 'Cancelar'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-}) 
-
-        });
-
-    </script>
-
 @endsection

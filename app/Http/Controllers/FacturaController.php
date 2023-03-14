@@ -160,18 +160,22 @@ class FacturaController extends Controller
             // return redirect('/articulos');
     } */
 
-    public function pdf()
+    public function pdf($id)
     {
         $factura_all = DB::table('productos_facturas')
         ->select('id_factura', 'producto_id', 'productos.nombre', 'productos.precio', 'cantidad','total_producto','factura_id', 'total' ,'facturas.created_at')
         ->join('facturas', 'productos_facturas.factura_id', '=', 'facturas.id_factura')
         ->join('productos', 'productos_facturas.producto_id', '=', 'productos.id_producto')
-        ->where('factura_id', 1)
+        ->where('factura_id', $id)
+        ->get();
+
+        $factura_cliente = DB::table('facturas')
+        ->select('id_factura', 'clientes.nombre_cliente', 'clientes.documento_identidad')
+        ->join('clientes', 'facturas.id_factura', '=', 'clientes.id_cliente')
         ->get();
 
         $f = Factura::all();
-        $pdf = Pdf::loadView('facturas.pdf', compact('f'));
+        $pdf = Pdf::loadView('facturas.pdf', compact('factura_all', 'factura_cliente'));
         return $pdf->stream();
     }
-
 }
