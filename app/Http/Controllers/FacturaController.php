@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class FacturaController extends Controller
 {
@@ -21,16 +24,16 @@ class FacturaController extends Controller
     public function index()
     {
         //
+        $rol = Auth::user()->rol_id;
+
         $usuario = Auth::user()->name;
         $facturas = DB::table('facturas')
         ->select('id_factura', 'total' ,'facturas.created_at', 'clientes.nombre_cliente')
         ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
+        ->orderBy('id_factura','ASC')
         ->paginate(5);
 
-
-
-
-        return view('facturas.index', compact('facturas', 'usuario'));
+        return view('facturas.index', compact('facturas', 'usuario', 'rol'));
     }
 
     /**
@@ -40,9 +43,11 @@ class FacturaController extends Controller
      */
     public function create()
     {
+        $rol = Auth::user()->rol_id;
+
         $clientes = Cliente::all();
         $productos = Producto::all();
-        return view('facturas.crear', compact('productos', 'clientes'));
+        return view('facturas.crear', compact('productos', 'clientes', 'rol'));
         //
     }
 
@@ -63,12 +68,7 @@ class FacturaController extends Controller
         ]);
 
         Factura::create($request->all());
-         
-
-
         $id_factura = Factura::max('id_factura');
-
-
         $total = $request->total_cantidad;
         $producto = $request->producto;
         $cantidad = $request->cantidad;
@@ -76,7 +76,7 @@ class FacturaController extends Controller
  */
         $cliente = $request->cliente_id;
 
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i<count($cantidad); $i++) {
             $datasave = [
                 'producto_id' => $producto[$i],
                 'total_producto' => $total[$i],
@@ -169,9 +169,15 @@ class FacturaController extends Controller
         ->where('factura_id', $id)
         ->get();
 
+        $id_c = DB::table('facturas')
+        ->select('cliente_id')
+        ->where('id_factura', $id)
+        ->pluck('cliente_id');
+
         $factura_cliente = DB::table('facturas')
         ->select('id_factura', 'clientes.nombre_cliente', 'clientes.documento_identidad')
-        ->join('clientes', 'facturas.id_factura', '=', 'clientes.id_cliente')
+        ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
+        ->where('clientes.id_cliente', $id_c)
         ->get();
 
         $f = Factura::all();

@@ -39,7 +39,7 @@ class ProductoController extends Controller
         $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
         if ($rol==1) {
-            return view('productos.crear', compact('user'));
+            return view('productos.crear', compact('user' ,'rol'));
         }
         return redirect()->route('productos.index');
 
@@ -88,8 +88,14 @@ class ProductoController extends Controller
     public function edit($id)
     {
         //
+
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
         $producto=Producto::find($id);
-        return view('productos.editar', compact('producto'));
+        if ($rol==1) {
+            return view('productos.editar', compact('producto'));
+        }
+
     }
 
     /**
@@ -110,6 +116,7 @@ class ProductoController extends Controller
         ]);
         $producto=Producto::find($id);
         $producto->update($request->all());
+        
         return redirect()->route('productos.index');
 
     }
@@ -122,8 +129,10 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        Producto::find($id)->delete();
-        return redirect()->route('productos.index')->with('eliminado','ok');
+        $rol = Auth::user()->rol_id;
+        if ($rol==1) {
+            Producto::find($id)->delete();
+            return redirect()->route('productos.index')->with('eliminado','ok');        
+        }
     }
 }

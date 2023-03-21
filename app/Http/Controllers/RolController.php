@@ -20,7 +20,10 @@ class RolController extends Controller
         $rol = Auth::user()->rol_id;
 
         $roles = Rol::paginate(5);
-        return view('roles.index', compact('roles','rol')) ;
+        if ($rol==1) {
+            return view('roles.index', compact('roles','rol')) ;
+        }
+        return redirect()->route('home');
     
     }
 
@@ -33,7 +36,12 @@ class RolController extends Controller
     {
         //
         $rol=Rol::paginate(5);
-        return view('roles.crear' );
+        $rolu = Auth::user()->rol_id;
+        $user = Auth::user()->id;
+        if ($rolu==1) {
+            return view('roles.crear', compact('user', 'rol'));
+        }
+
     }
 
     /**

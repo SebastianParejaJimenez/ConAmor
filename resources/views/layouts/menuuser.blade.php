@@ -18,6 +18,7 @@
         <i class="fas fa-money-bill"></i><span>Facturación</span>
     </a>
 </li>
+
 <li class="menu-header">Productos</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
@@ -25,6 +26,7 @@
         <i class="fas fa-archive"></i><span>Productos</span>
     </a>
 </li>
+
 <li class="menu-header">Proveedores</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
@@ -32,23 +34,6 @@
         <i class="fas fa-truck"></i><span>Proveedores</span>
     </a>
 
-</li>
-
-
-<li class="menu-header">Usuarios</li>
-
-<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-
-    <a class="nav-link" href="/roles">
-        <i class=" fas fa-user-lock"></i><span>Roles</span>
-    </a>
-</li>
-<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-
-    <a class="nav-link" href="/usuarios">
-        <i class=" fas fa-users"></i><span>Usuarios</span>
-    </a>
-    
 </li>
 
 <li class="menu-header">Documentos</li>
@@ -59,5 +44,4 @@
     </a>
 
 </li>
-
 

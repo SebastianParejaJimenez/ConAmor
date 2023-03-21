@@ -32,7 +32,7 @@ class ClienteController extends Controller
         //
         $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
-        return view('clientes.crear'/* , compact('user') */);
+        return view('clientes.crear', compact('user' , 'rol'));
     }
 
     /**

@@ -17,9 +17,9 @@ class DocumentoController extends Controller
     public function index()
     {
         //
-        
+        $rol = Auth::user()->rol_id;
         $documentos=Documento::paginate(5);
-        return view('documentos.index', compact('documentos'));
+        return view('documentos.index', compact('documentos' , 'rol'));
 
     }
 

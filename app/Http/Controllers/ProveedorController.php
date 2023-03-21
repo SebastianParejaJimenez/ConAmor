@@ -34,8 +34,12 @@ class ProveedorController extends Controller
     public function create()
     {
         //
+        $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
-        return view('proveedores.crear', compact('user'));
+        if ($rol==1) {
+            return view('proveedores.crear', compact('user'));
+        }
+        return redirect()->route('proveedores.index');
 
     }
 
@@ -80,9 +84,12 @@ class ProveedorController extends Controller
     public function edit($id)
     {
         //
-        
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
         $proveedor = Proveedor::find($id);
-        return view('proveedores.editar',compact('proveedor'));
+        if ($rol==1) {
+            return view('proveedores.editar',compact('proveedor'));
+        }
 
     }
 
@@ -119,7 +126,10 @@ class ProveedorController extends Controller
     public function destroy($id)
     {
         //
-        Proveedor::find($id)->delete();
-        return redirect()->route('proveedores.index')->with('eliminado','ok');
+        $rol = Auth::user()->rol_id;
+        if ($rol==1) {
+            Proveedor::find($id)->delete();
+            return redirect()->route('proveedores.index')->with('eliminado','ok');
+        }
     }
 }

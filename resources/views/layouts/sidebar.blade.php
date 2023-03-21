@@ -6,6 +6,13 @@
             <a href="index.html">C.A</a>
         </div>
     <ul class="sidebar-menu">
+        @if($rol===2) 
+            @include('layouts.menuuser')
+        @endif
+        @if($rol===1) 
         @include('layouts.menu')
+        @endif
+        
+
     </ul>
 </aside>
