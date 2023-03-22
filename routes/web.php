@@ -35,6 +35,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('facturas/pdf/{id_factura}', [FacturaController::class, 'pdf'])->name('facturas.pdf');
+Route::get('/get-product-price/{id_producto}', [FacturaController::class, 'getProductPrice'])->name('get-product-price');
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::resource('roles', RolController::class);

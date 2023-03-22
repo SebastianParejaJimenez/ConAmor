@@ -112,7 +112,6 @@ $cant_docs = Documento::count();
                 <p class="section-lead">La siguiente grafica representara las ganancias generadas mensuales.</p>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card">
                             <div class="card-body">
                                 <div class="card">
                                     <div class="card-body">
@@ -121,10 +120,10 @@ $cant_docs = Documento::count();
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div> 
+    
         </section> 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>

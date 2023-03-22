@@ -66,6 +66,18 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('creado','ok');
     }
 
+    public function getProductPrice($request, $id_producto)
+    {
+        $product = Producto::find($id_producto);
+
+        if ($product) {
+            return response()->json(['precio' => $product->precio]);
+        } else {
+            return response()->json(['error' => 'Product not found']);
+        }
+    }
+
+
     /**
      * Display the specified resource.
      *
