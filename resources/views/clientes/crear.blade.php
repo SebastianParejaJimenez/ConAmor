@@ -42,7 +42,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Documento de Identidad</label>
-                                    <input type="number" name="documento_identidad" class="form-control">
+                                    <input type="" name="documento_identidad" class="form-control">
                                 </div>
                             </div>
                         

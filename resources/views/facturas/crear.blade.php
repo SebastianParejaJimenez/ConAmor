@@ -56,8 +56,8 @@
                                                     @endif
                                                 </td>
 
-                                                <td><input type="" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad" /></td>
-                                                <td><input type="" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" step="0.01" /></td>
+                                                <td><input type="" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                                <td><input type="" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input"/></td>
                                                 <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
                                             </tr>
                                             <tr id='addr1'></tr>

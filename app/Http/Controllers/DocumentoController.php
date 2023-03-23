@@ -20,6 +20,7 @@ class DocumentoController extends Controller
         $rol = Auth::user()->rol_id;
         $documentos=Documento::paginate(5);
         return view('documentos.index', compact('documentos' , 'rol'));
+        
 
     }
 

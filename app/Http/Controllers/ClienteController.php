@@ -46,7 +46,7 @@ class ClienteController extends Controller
         //
         request()->validate([
             'nombre_cliente' => 'required',
-            'documento_identidad'=>'required'        
+            'documento_identidad'=>'required|unique:clientes|numeric'        
         ]);
 
         Cliente::create($request->all());
@@ -73,8 +73,11 @@ class ClienteController extends Controller
     public function edit($id)
     {
         //
+        $rol = Auth::user()->rol_id;
         $cliente = Cliente::find($id);
-        return view('clientes.editar',compact('cliente'));
+        if ($rol==1) {
+            return view('clientes.editar',compact('cliente', 'rol'));
+        }
     }
 
     /**
