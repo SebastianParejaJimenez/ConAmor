@@ -46,7 +46,7 @@ class ClienteController extends Controller
         //
         request()->validate([
             'nombre_cliente' => 'required',
-            'documento_identidad'=>'required|unique:clientes|numeric'        
+            'documento_identidad'=>'required|unique:clientes|numeric|digits_between:1,10'        
         ]);
 
         Cliente::create($request->all());
@@ -92,7 +92,7 @@ class ClienteController extends Controller
         //
         request()->validate([
             'nombre_cliente' => 'required',
-            'documento_identidad'=>'required'        
+            'documento_identidad'=>'required|unique:clientes|numeric|digits_between:1,10'        
         ]);
 
         $cliente = Cliente::find($id);

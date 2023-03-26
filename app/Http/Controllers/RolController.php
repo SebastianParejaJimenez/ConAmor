@@ -35,11 +35,11 @@ class RolController extends Controller
     public function create()
     {
         //
-        $rol=Rol::paginate(5);
-        $rolu = Auth::user()->rol_id;
+        $rol = Auth::user()->rol_id;
+        $roles=Rol::paginate(5);
         $user = Auth::user()->id;
         if ($rolu==1) {
-            return view('roles.crear', compact('user', 'rol'));
+            return view('roles.crear', compact('user', 'roles', 'rol'));
         }
 
     }

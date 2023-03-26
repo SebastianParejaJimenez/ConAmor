@@ -44,8 +44,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-         $rol_id = Rol::pluck('nombre','id_rol')->all();
-        return view('usuarios.crear', compact('rol_id'));
+        $rol = Auth::user()->rol_id;
+        $rol_id = Rol::pluck('nombre','id_rol')->all();
+        return view('usuarios.crear', compact('rol_id', 'rol'));
     }
 
     /**

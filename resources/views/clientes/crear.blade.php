@@ -13,8 +13,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-<!--                         Para atrapar errores y mostrarlos
- -->                    @if($errors->any())
+<!--                         Para atrapar errores y mostrarlos-->                    
+@if($errors->any())
                         <div class="alert " role="alert">
                             @foreach($errors->all() as $error)
                             <button type="button" data-dismiss="alert" arial-label="Close"
