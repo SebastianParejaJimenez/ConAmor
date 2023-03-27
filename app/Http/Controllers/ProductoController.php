@@ -56,9 +56,9 @@ class ProductoController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required',
-            'tipo'=>'required',
-            'precio'=>'required|numeric|min:1',
+            'nombre'=>'required|between:1,50',
+            'tipo'=>'required|between:1,30',
+            'precio'=>'required|numeric|digits_between:1,11',
             'user_id'=>'required'
         ]);
 
@@ -121,9 +121,9 @@ class ProductoController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required',
-            'tipo'=>'required',
-            'precio'=>'required',
+            'nombre'=>'required|between:1,50',
+            'tipo'=>'required|between:1,30',
+            'precio'=>'required|numeric|digits_between:1,11',
             'user_id'=>'required'
         ]);
         $producto=Producto::find($id);

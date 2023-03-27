@@ -43,7 +43,7 @@ return [
     'digits_between' => 'El atributo :attribute debe de tener un rango de caracteres entre :min y :max digitos, lo actualmente ingresado es demasiado grande!',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'The :attribute must be a valid email address.',
+    'email' => 'El :attribute debe de ser una direccion de Correo valida.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',

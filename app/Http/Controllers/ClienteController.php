@@ -46,7 +46,7 @@ class ClienteController extends Controller
         //
         request()->validate([
             'nombre_cliente' => 'required',
-            'documento_identidad'=>'required|unique:clientes|numeric|digits_between:1,10'        
+            'documento_identidad'=>'required|unique:clientes|numeric|digits_between:1,11'        
         ]);
 
         Cliente::create($request->all());

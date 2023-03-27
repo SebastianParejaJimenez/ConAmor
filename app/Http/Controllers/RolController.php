@@ -38,7 +38,7 @@ class RolController extends Controller
         $rol = Auth::user()->rol_id;
         $roles=Rol::paginate(5);
         $user = Auth::user()->id;
-        if ($rolu==1) {
+        if ($rol==1) {
             return view('roles.crear', compact('user', 'roles', 'rol'));
         }
 
@@ -54,7 +54,7 @@ class RolController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required'
+            'nombre'=>'required|between:1,50'
         ]);
 
         Rol::create($request->all());
@@ -96,7 +96,7 @@ class RolController extends Controller
     {
         //
         request()->validate([
-            'nombre'=>'required'
+            'nombre'=>'required|between:1,50'
         ]);
         $rol=Rol::find($id);
         $rol->update($request->all());

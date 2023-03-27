@@ -49,7 +49,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Correo del Proveedor</label>
-                                    <input type="email" name="correo" class="form-control">
+                                    <input type="" name="correo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

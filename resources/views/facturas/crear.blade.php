@@ -148,46 +148,48 @@
                 calc();
             }
         }
-
-
-
         $(document).ready(function() {
-            var i = 1;
-            $("#add_row").click(function() {
-                b = i - 1;
-                $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
-                $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
-                i++;
+            
+    $("#add_row").click(function() {
+        // Obtener el número de filas actual
+        var current_row = $("#tab_logic tbody tr:last").attr("id");
+        var current_index = parseInt(current_row.replace("addr", ""));
+        
+        // Crear una nueva fila con el mismo formato que las existentes
+        var new_row = "<tr id='addr" + (current_index + 1) + "'>";
+        new_row += "<td>" + (current_index + 1) + "</td>";
+        new_row += "<td><select name='producto[]' id='product_id_" + (current_index + 1) + "' class='form-control product-select'>";
+        new_row += "<option value='' disabled selected>Seleccione una Opcion</option>";
+        new_row += "@foreach($productos as $producto)<option value='{{$producto->id_producto}}'>{{$producto->nombre}}</option>@endforeach";
+        new_row += "</select></td>";
+        new_row += "<td><input type='' name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
+        new_row += "<td><input type='' name='precio[]' placeholder='Precio del Producto' class='form-control precio price-input'/></td>";
+        new_row += "<td><input id='total_calc_" + (current_index + 1) + "' type='' name='total_cantidad[]' placeholder='Total' class='form-control total' readonly value='' /></td>";
+        new_row += "</tr>";
+        
+        // Agregar la nueva fila a la tabla
+        $("#tab_logic tbody").append(new_row);
+        var product_id = $(this).val();
+        var priceElement = $(this).closest('tr').find('.precio');
+        // Actualizar el evento onchange de la lista desplegable de productos
+        $("#product_id_" + (current_index + 1)).on("change", function() {
+            updatePrice($(this));
+        });
+    });
+    
+    $("#delete_row").click(function() {
+        // Obtener el número de filas actuales
+        var current_row = $("#tab_logic tbody tr:last").attr("id");
+        var current_index = parseInt(current_row.replace("addr", ""));
+        // No se pueden borrar todas las filas
+        if (current_index ==1) {
+            return;
+        }
+        // Borrar la última fila de la tabla
+        $("#addr" + current_index).remove();
+        calc_total();
 
-                // Agregar evento de cambio para el producto seleccionado en la nueva fila
-                $('#addr' + b).find('#product_id').on('change', function() {
-                    var product_id = $(this).val();
-                    var priceElement = $(this).closest('tr').find('.precio');
-
-                    if (product_id) {
-                        $.ajax({
-                            url: "{{ route('get-product-price', ':id_producto') }}".replace(':id_producto', product_id),
-                            type: "GET",
-                            dataType: "json",
-                            success: function(data) {
-                                priceElement.val(data.precio);
-                                calc();
-                            }
-                        });
-                    } else {
-                        priceElement.val('');
-                        calc();
-                    }
-                });
-            });
-
-            $("#delete_row").click(function() {
-                if (i > 1) {
-                    $("#addr" + (i - 1)).html('');
-                    i--;
-                }
-                calc();
-            });
+    });
 
             $('#tab_logic tbody').on('keyup change', function() {
                 calc();

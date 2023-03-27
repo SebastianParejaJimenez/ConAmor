@@ -37,7 +37,7 @@ class ProveedorController extends Controller
         $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
         if ($rol==1) {
-            return view('proveedores.crear', compact('user'));
+            return view('proveedores.crear', compact('user', 'rol'));
         }
         return redirect()->route('proveedores.index');
 
@@ -53,9 +53,9 @@ class ProveedorController extends Controller
     {
         //
         request()->validate([
-            'nombre' => 'required',
-            'telefono'=>'required|numeric|min:1',
-            'correo'=>'required',
+            'nombre' => 'required|between:1,30',
+            'telefono'=>'required|numeric|digits_between:1,50',
+            'correo'=>'required|email',
             'direccion'=>'required',
             'user_id'=>'required'
         ]);
@@ -88,7 +88,7 @@ class ProveedorController extends Controller
         $user = Auth::user()->id;
         $proveedor = Proveedor::find($id);
         if ($rol==1) {
-            return view('proveedores.editar',compact('proveedor'));
+            return view('proveedores.editar',compact('proveedor', 'rol'));
         }
 
     }
@@ -104,9 +104,9 @@ class ProveedorController extends Controller
     {
         //
         request()->validate([
-            'nombre' => 'required',
-            'telefono'=>'required',
-            'correo'=>'required',
+            'nombre' => 'required|between:1,30',
+            'telefono'=>'required|numeric|digits_between:1,50',
+            'correo'=>'required|email',
             'direccion'=>'required',
             'user_id'=>'required'
 

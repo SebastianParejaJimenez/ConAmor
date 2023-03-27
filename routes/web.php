@@ -25,19 +25,15 @@ use App\Http\Controllers\ClienteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
-Route::get('facturas/pdf/{id_factura}', [FacturaController::class, 'pdf'])->name('facturas.pdf');
-Route::get('/get-product-price/{id_producto}', [FacturaController::class, 'getProductPrice'])->name('get-product-price');
 
-Route::group(['middleware'=> ['auth']], function () {
+Route::middleware(['auth', 'prevent-back-history'])->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('facturas/pdf/{id_factura}', [FacturaController::class, 'pdf'])->name('facturas.pdf');
+    Route::get('/get-product-price/{id_producto}', [FacturaController::class, 'getProductPrice'])->name('get-product-price');
+    
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BlogController::class);
