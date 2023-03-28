@@ -94,9 +94,10 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
+        $rol = Auth::user()->rol_id;
         $user = User::find($id);
         $rol_id = Rol::pluck('nombre','id_rol')->all();
-        return view('usuarios.editar', compact('user', 'rol_id'));
+        return view('usuarios.editar', compact('user', 'rol_id', 'rol'));
     }
 
     /**

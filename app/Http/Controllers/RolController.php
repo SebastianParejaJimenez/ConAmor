@@ -81,8 +81,9 @@ class RolController extends Controller
     public function edit($id)
     {
         //
-        $rol=Rol::find($id);
-        return view('roles.editar', compact('rol'));
+        $rol = Auth::user()->rol_id;
+        $roles=Rol::find($id);
+        return view('roles.editar', compact('roles', 'rol'));
     }
 
     /**

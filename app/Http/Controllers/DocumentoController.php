@@ -31,9 +31,9 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        //
+        $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
-        return view('documentos.crear', compact('user'));
+        return view('documentos.crear', compact('user' ,'rol'));
 
     }
 
@@ -86,9 +86,10 @@ class DocumentoController extends Controller
     public function edit($id)
     {
         //
+        $rol = Auth::user()->rol_id;
         $documento = Documento::find($id);
 
-        return view('documentos.editar', compact('documento'));
+        return view('documentos.editar', compact('documento', 'rol'));
     }
 
     /**

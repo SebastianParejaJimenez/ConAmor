@@ -57,7 +57,7 @@
                                                 </td>
 
                                                 <td><input type="" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
-                                                <td><input type="" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input"/></td>
+                                                <td><input type="" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
                                                 <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
                                             </tr>
                                             <tr id='addr1'></tr>
@@ -163,7 +163,7 @@
         new_row += "@foreach($productos as $producto)<option value='{{$producto->id_producto}}'>{{$producto->nombre}}</option>@endforeach";
         new_row += "</select></td>";
         new_row += "<td><input type='' name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
-        new_row += "<td><input type='' name='precio[]' placeholder='Precio del Producto' class='form-control precio price-input'/></td>";
+        new_row += "<td><input type='' name='precio[]' placeholder='Precio del Producto' class='form-control precio price-input' readonly/></td>";
         new_row += "<td><input id='total_calc_" + (current_index + 1) + "' type='' name='total_cantidad[]' placeholder='Total' class='form-control total' readonly value='' /></td>";
         new_row += "</tr>";
         

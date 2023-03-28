@@ -105,7 +105,7 @@ class ProductoController extends Controller
         $user = Auth::user()->id;
         $producto=Producto::find($id);
         if ($rol==1) {
-            return view('productos.editar', compact('producto'));
+            return view('productos.editar', compact('producto', 'rol'));
         }
 
     }

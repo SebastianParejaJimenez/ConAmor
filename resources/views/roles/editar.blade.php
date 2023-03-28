@@ -27,14 +27,14 @@
                         </div>
                         @endif
 
-                        <form action="{{ route('roles.update', $rol->id_rol)}}" method="POST">
+                        <form action="{{ route('roles.update', $roles->id_rol)}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="name">Nombre</label>
-                                        <input type="text" name="nombre" class="form-control" value="{{$rol->nombre}}">
+                                        <input type="text" name="nombre" class="form-control" value="{{$roles->nombre}}">
                                     </div>
                                 </div>
                             </div>
