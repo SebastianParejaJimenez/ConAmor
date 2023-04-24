@@ -30,13 +30,12 @@ class HomeController extends Controller
             'report_type' => 'group_by_date',
             'model' => 'App\Models\Factura',
             'group_by_field' => 'created_at',
-            'group_by_period' => 'day',
-            'chart_type' => 'line',
+            'group_by_period' => 'month',
+            'chart_type' => 'bar',
             'chart_color' => '103, 119, 239',
             'aggregate_function' => 'sum',
             'aggregate_field' => 'total',
-             'continuous_time' => true,
-             'filter_field ' => 'created_at',
+              'filter_field ' => 'created_at',
         ];
         $chart = new LaravelChart($chart_options);
         

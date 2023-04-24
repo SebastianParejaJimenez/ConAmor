@@ -98,10 +98,6 @@ Swal.fire({
 @endif
 
 <script>
-
-$('.formulario-eliminar').submit(function(e){
-e.preventDefault();
-
 Swal.fire({
   title: 'Estas Seguro de Eliminar el Proveedor?',
   text: "No podras recuperarlo si lo eliminas.",
@@ -117,7 +113,6 @@ Swal.fire({
   }
 }) 
 
-        });
 
     </script>
 

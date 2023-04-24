@@ -13,16 +13,14 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <!--                         Para atrapar errores y mostrarlos
- --> @if($errors->any())
+                        <!--Para atrapar errores y mostrarlos-->
+                         @if($errors->any())
                         <div class="alert " role="alert">
                             @foreach($errors->all() as $error)
                             <button type="button" data-dismiss="alert" arial-label="Close" class="btn btn-primary btn-icon icon-left">
                                 <i class="fas fa-eye"></i> Error: <span class="badge badge-transparent">{{$error}}</span>
                             </button>
-
                             @endforeach
-
                         </div>
                         @endif
 
@@ -56,8 +54,8 @@
                                                     @endif
                                                 </td>
 
-                                                <td><input type="" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
-                                                <td><input type="" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
+                                                <td><input type="number" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                                <td><input type="number" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
                                                 <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
                                             </tr>
                                             <tr id='addr1'></tr>

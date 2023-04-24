@@ -12,7 +12,13 @@
                         <div class="card-body">
                             
                             <a class="btn btn-info" href="{{ route('facturas.create') }}">Crear Nueva Factura</a>
-
+                            
+                                <select id="select-ano" class="btn btn-success float-right">
+                                    <option disabled selected>Seleccione un año</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                </select>
                             <table class="table table-stripped mt-2">
                                 <thead>
                                     <th>ID</th>
@@ -56,6 +62,7 @@
 @section('scripts')
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @if(session('creado')== "ok")
 <script>
@@ -66,6 +73,30 @@
         showConfirmButton: false,
         timer: 1000
     })
+
 </script>
 @endif
+
+<script>
+    const selectAno = document.getElementById('select-ano');
+    selectAno.addEventListener('change', function() {
+        const anoSeleccionado = selectAno.value;
+
+        Swal.fire({
+            title: `Ventas anuales ${anoSeleccionado}`,
+            text: '¿Deseas ver las gráficas de ventas?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('graficas.ventas', ['ano' => ':ano']) }}".replace(':ano', anoSeleccionado);
+            }
+        });
+    });
+</script>
+
+    
+</script>
 @endsection

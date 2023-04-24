@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\GraficasController;
 
 //Controladores
 
@@ -33,7 +34,9 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('facturas/pdf/{id_factura}', [FacturaController::class, 'pdf'])->name('facturas.pdf');
     Route::get('/get-product-price/{id_producto}', [FacturaController::class, 'getProductPrice'])->name('get-product-price');
-    
+    Route::get('/graficas/ventas/{ano}', [GraficasController::class, 'ventas'])->name('graficas.ventas');
+
+    Route::resource('graficas', GraficasController::class);
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BlogController::class);

@@ -19,7 +19,10 @@
                                 <th>Nombre</th>
                                 <th>Documento de Identidad</th>
                                 <th>Hora de Creacion</th>
+                                @if($rol===1)
+
                                 <th>Acciones</th>
+                                @endif
                             </thead>
                             <tbody>
                                 @foreach($clientes as $cliente)
@@ -31,8 +34,10 @@
                                     </td>
 
 
+                                    @if($rol===1)
 
                                     <td>
+
                                         <a href="{{ route('clientes.edit',$cliente->id_cliente) }}" class="btn btn-info">Editar</a>
                                         <form action="{{ route('clientes.destroy',$cliente->id_cliente) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                             @csrf
@@ -41,7 +46,9 @@
                                             <button type="submit" class="btn btn-danger">Borrar</button>
 
                                         </form>
+
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

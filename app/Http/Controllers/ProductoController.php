@@ -107,6 +107,7 @@ class ProductoController extends Controller
         if ($rol==1) {
             return view('productos.editar', compact('producto', 'rol'));
         }
+        return redirect()->route('productos.index');
 
     }
 
@@ -146,5 +147,6 @@ class ProductoController extends Controller
             Producto::find($id)->delete();
             return redirect()->route('productos.index')->with('eliminado','ok');        
         }
+        
     }
 }
