@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Facturas</h3>
+            <h3 class="page__heading">Ventas</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -15,11 +15,12 @@
                             
                                 <select id="select-ano" class="btn btn-success float-right">
                                     <option disabled selected>Seleccione un año</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
+                                    <option class="dropdown-item" value="2021">2021</option>
+                                    <option class="dropdown-item" value="2022">2022</option>
+                                    <option class="dropdown-item" value="2023">2023</option>
                                 </select>
-                            <table class="table table-stripped mt-2">
+                                
+                            <table class="table table-stripped mt-2" id="listado_facturas">
                                 <thead>
                                     <th>ID</th>
                                     <th>Total</th>
@@ -63,7 +64,8 @@
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 @if(session('creado')== "ok")
 <script>
     Swal.fire({
@@ -97,6 +99,11 @@
     });
 </script>
 
-    
-</script>
+ <script>
+ $('#listado_facturas').dataTable({
+    "bInfo": false, // hide showing entries
+
+});
+ </script>   
+
 @endsection

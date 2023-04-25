@@ -31,7 +31,7 @@ class FacturaController extends Controller
         ->select('id_factura', 'total' ,'facturas.created_at', 'clientes.nombre_cliente')
         ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
         ->orderBy('id_factura','ASC')
-        ->paginate(5);
+        ->paginate();
 
         return view('facturas.index', compact('facturas', 'usuario', 'rol'));
     }

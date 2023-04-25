@@ -41,5 +41,5 @@ class HomeController extends Controller
         
         $rol = Auth::user()->rol_id;
         return view('home', compact('rol', 'chart'));
+        }
     }
-}

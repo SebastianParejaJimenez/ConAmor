@@ -36,7 +36,7 @@
                                             <span class="badge badge-pill badge-primary">{{$producto->name}}</span>
                                         </td>
                                         <td>
-                                        <span class="badge badge-pill badge-light">{{$producto->created_at}}</span>
+                                        <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($producto->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                         </td>
                                         @if($rol===1)
 
@@ -98,22 +98,10 @@ Swal.fire({
 @endif
 
 <script>
-Swal.fire({
-  title: 'Estas Seguro de Eliminar el Proveedor?',
-  text: "No podras recuperarlo si lo eliminas.",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Confirmar',
-  cancelButtonText: 'Cancelar'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-}) 
+ $('#listado_facturas').dataTable({
+    "bInfo": false, // hide showing entries
 
-
-    </script>
+});
+ </script>   
 
 @endsection

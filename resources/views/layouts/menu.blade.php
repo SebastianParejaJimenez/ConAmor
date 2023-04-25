@@ -1,34 +1,34 @@
 <li class="menu-header">General</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/home">
+    <a class="nav-link" href="{{ url('/home') }}">
         <i class="fas fa-columns"></i><span>Menu</span>
     </a>
 </li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/clientes">
+    <a class="nav-link" href="{{ url('/clientes') }}">
         <i class="fas fa-user-tag"></i><span>Clientes</span>
     </a>
 
 </li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/facturas">
-        <i class="fas fa-money-bill"></i><span>Facturación</span>
+    <a class="nav-link" href="{{ url('/facturas') }}">
+        <i class="fas fa-money-bill"></i><span>Ventas</span>
     </a>
 </li>
 <li class="menu-header">Productos</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/productos">
+    <a class="nav-link" href="{{ url('/productos') }}">
         <i class="fas fa-archive"></i><span>Productos</span>
     </a>
 </li>
 <li class="menu-header">Proveedores</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/proveedores">
+    <a class="nav-link" href="{{ url('/proveedores') }}">
         <i class="fas fa-truck"></i><span>Proveedores</span>
     </a>
 
@@ -39,13 +39,13 @@
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
 
-    <a class="nav-link" href="/roles">
+    <a class="nav-link" href="{{ url('/roles') }}">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
     </a>
 </li>
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
 
-    <a class="nav-link" href="/usuarios">
+    <a class="nav-link" href="{{ url('/usuarios') }}">
         <i class=" fas fa-users"></i><span>Usuarios</span>
     </a>
     
@@ -54,7 +54,7 @@
 <li class="menu-header">Documentos</li>
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="/documentos">
+    <a class="nav-link" href="{{ url('/documentos') }}">
         <i class=" far fa-file-alt"></i><span>Documentos</span>
     </a>
 

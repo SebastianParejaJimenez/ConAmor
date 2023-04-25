@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class ProductoController extends Controller
@@ -16,12 +17,16 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        setlocale(LC_TIME, 'es_ES');
+        Carbon::setLocale('es');
         $rol = Auth::user()->rol_id;
 
             $productos = DB::table('productos')
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->paginate(5);
+
+            
         $productos5=Producto::paginate(5);
         return view('productos.index', compact('productos','rol'));
     
