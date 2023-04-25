@@ -30,7 +30,7 @@
                                     <td>{{$cliente->nombre_cliente}}</td>
                                     <td>{{$cliente->documento_identidad}}</td>
                                     <td>
-                                        <span class="badge badge-pill badge-light">{{$cliente->created_at}}</span>
+                                        <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($cliente->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                     </td>
 
 

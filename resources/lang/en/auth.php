@@ -15,6 +15,6 @@ return [
 
     'failed' => 'Los valores ingresados no coinciden con la informacion guardada.',
     'password' => 'La contraseña es Incorrecta.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Muchos intentos, intenta nuevamente en: :seconds segundos.',
 
 ];

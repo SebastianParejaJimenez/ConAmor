@@ -28,9 +28,10 @@ class FacturaController extends Controller
 
         $usuario = Auth::user()->name;
         $facturas = DB::table('facturas')
-        ->select('id_factura', 'total' ,'facturas.created_at', 'clientes.nombre_cliente')
+        ->select('id_factura', 'total' ,'facturas.created_at', 'clientes.nombre_cliente', 'facturas.estado')
         ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
         ->orderBy('id_factura','ASC')
+        ->where('facturas.estado', '=', 'activo')
         ->paginate();
 
         return view('facturas.index', compact('facturas', 'usuario', 'rol'));
@@ -144,30 +145,16 @@ class FacturaController extends Controller
     public function destroy($id)
     {
         //
-        Factura::find($id)->delete();
-        return redirect()->route('facturas.index')->with('eliminado', 'ok');
+        $resultados = Factura::select('id_factura', 'estado')->where('id_factura',$id);
+            # code...
+            DB::table('facturas')
+            ->select('estado')
+            ->where('id_factura','=',$id)
+            ->update(['estado'=>'eliminado']);
+        return redirect()->route('facturas.index')->with('eliminado','ok');
+
+    
     }
-
-    /*         public function crear(Request $request){
-        //
-
-        $producto= $request->producto;
-        $cantidad = $request->cantidad;
-        $precio = $request->precio;
-        $total = $request->total;
-
-        for($i=0;$i<2;$i++){
-            $datasave=[
-                'Codigo'=>$Codigo[$i],
-                'Descripcion'=>$Descripcion[$i],
-                'Cantidad'=>$Cantidad[$i],
-                'Precio'=>$Precio[$i],
-            ];
-            // DB::table('articulos')->insert($datasave);
-            }
-            return dd($datasave);
-            // return redirect('/articulos');
-    } */
 
     public function pdf($id)
     {

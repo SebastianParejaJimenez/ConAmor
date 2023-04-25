@@ -63,7 +63,7 @@ class ProductoController extends Controller
         request()->validate([
             'nombre'=>'required|between:1,50',
             'tipo'=>'required|between:1,30',
-            'precio'=>'required|numeric|digits_between:1,11',
+            'precio'=>'required|numeric|digits_between:1,10',
             'user_id'=>'required'
         ]);
 

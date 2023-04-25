@@ -17,6 +17,7 @@ class CreateFacturasTable extends Migration
             $table->id('id_factura');
             $table->integer('total');
             $table->unsignedBigInteger('cliente_id');
+            $table->string('estado')->default('activo');
             $table->foreign('cliente_id')->references('id_cliente')->on('clientes');
             $table->timestamps();
         });

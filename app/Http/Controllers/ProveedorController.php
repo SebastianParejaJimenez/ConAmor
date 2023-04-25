@@ -54,7 +54,7 @@ class ProveedorController extends Controller
         //
         request()->validate([
             'nombre' => 'required|between:1,30',
-            'telefono'=>'required|numeric|digits_between:1,50',
+            'telefono'=>'required|numeric|digits_between:1,30',
             'correo'=>'required|email',
             'direccion'=>'required',
             'user_id'=>'required'

@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         @if($rol===1)
-                        <a class="btn btn-info" href="{{ route('proveedores.create') }}">Agregar Nuevo Usuario</a>
+                        <a class="btn btn-info" href="{{ route('proveedores.create') }}">Agregar Nuevo Proveedor</a>
                         @endif
 
                         <table class="table table-stripped mt-2">
@@ -37,7 +37,7 @@
                                         <span class="badge badge-pill badge-primary">{{$proveedor->name}}</span>
                                     </td>
                                     <td>
-                                        <span class="badge badge-pill badge-light">{{$proveedor->created_at}}</span>
+                                        <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($proveedor->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                     </td>
 
 

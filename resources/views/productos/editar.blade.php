@@ -55,7 +55,7 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                <a href="/productos" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ url('/productos') }}" class="btn btn-secondary">Cancelar</a>
                             </div>
                         </div>
                         </form>

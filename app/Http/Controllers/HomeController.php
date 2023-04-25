@@ -35,7 +35,7 @@ class HomeController extends Controller
             'chart_color' => '103, 119, 239',
             'aggregate_function' => 'sum',
             'aggregate_field' => 'total',
-              'filter_field ' => 'created_at',
+            'filter_field ' => 'created_at',
         ];
         $chart = new LaravelChart($chart_options);
         

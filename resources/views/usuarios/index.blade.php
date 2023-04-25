@@ -39,7 +39,7 @@
                                             <span class="badge badge-pill badge-primary">{{$usuario->nombre}}</span>
                                         </td>
                                         <td>
-                                        <span class="badge badge-pill badge-light">{{$usuario->created_at}}</span>
+                                        <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($usuario->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                         </td>
                                         @if($rol===1)
                                         <td>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
     <div class="section-header">
-            <h1>Crear</h1>
+            <h1>Crear Proveedor</h1>
           </div>
         <div class="section-body">
             
@@ -61,7 +61,7 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a href="/proveedores" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ url('/proveedores') }}" class="btn btn-secondary">Cancelar</a>
 
                             </div>
                         </div>

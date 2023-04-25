@@ -41,7 +41,7 @@ $cant_docs = Documento::count();
                                         <div class="card-body">
                                             {{$cant_usuarios}}
                                         </div>
-                                        <a href="/usuarios"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                                        <a href="{{ url('/usuarios') }}"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@ $cant_docs = Documento::count();
                                             {{$cant_prov}}
 
                                         </div>
-                                        <a href="/proveedores"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                                        <a href="{{ url('/proveedores') }}"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
 
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@ $cant_docs = Documento::count();
                                             {{$cant_prod}}
 
                                         </div>
-                                        <a href="/productos"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                                        <a href="{{ url('/productos') }}"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ $cant_docs = Documento::count();
                                         <div class="card-body">
                                             {{$cant_cliente}}
                                         </div>
-                                        <a href="/clientes"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                                        <a href="{{ url('/clientes') }}"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
                                     </div>
                                 </div>
                             </div>

@@ -27,7 +27,7 @@
                                         <td>
                                             <object
                                             type="application/pdf"
-                                            data="/documentos_subidos/{{$documento->documento}}"
+                                            data="{{ url('documentos_subidos') }}/{{$documento->documento}}"
                                             width="300" height="300">
                                             ERROR (no puede mostrarse el objeto)
                                             </object>

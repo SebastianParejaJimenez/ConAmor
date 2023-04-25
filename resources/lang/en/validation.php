@@ -144,6 +144,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'digits_between' => 'El valor excede el limite del rango'
         ],
     ],
 

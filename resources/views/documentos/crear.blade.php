@@ -43,14 +43,14 @@
                                 <div class="card-body col-xs-12 col-sm-12 col-md-12">
                                     <div class="jumbotron text-center">
                                         <h2>Seleccionar Documento</h2>
-
-                                        <input name="documento" id="documento" type='file' class="hidden" accept=".pdf, .txt, .docx, .jpg, .xls" />
+                                        <p><b>Solo se PERMITEN</b> documentos tipo<strong> PDF y TXT</strong>.</p>
+                                        <input name="documento" id="documento" type='file' class="hidden" accept=".pdf, .txt" />
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <a href="/documentos" class="btn btn-secondary">Cancelar</a>
+                                    <a href="{{ url('/documentos') }}" class="btn btn-secondary">Cancelar</a>
                                 </div>
                             </div>
                         </form>

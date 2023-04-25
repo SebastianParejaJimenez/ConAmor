@@ -49,7 +49,7 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ url('/clientes') }}" class="btn btn-secondary">Cancelar</a>
 
                             </div>
                         </div>
