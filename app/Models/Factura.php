@@ -11,9 +11,6 @@ class Factura extends Model
     protected $primaryKey = 'id_factura';
     use HasFactory;
     protected $fillable = ['total', 'cliente_id','estado'];
-
-
-
     protected $table = 'facturas';
 
     /**
@@ -24,6 +21,7 @@ class Factura extends Model
      */
     public static function obtenerDatos($ano)
     {
+
                 $ventas = Factura::whereYear('created_at', $ano)
                 ->selectRaw('SUM(total) as total, MONTH(created_at) as mes')
                 ->groupBy('mes')
@@ -36,6 +34,8 @@ class Factura extends Model
         }
 
         return $datos;
+        
+    
     }
 
     /**

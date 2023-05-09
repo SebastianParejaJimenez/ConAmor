@@ -31,6 +31,7 @@ class DocumentoController extends Controller
      */
     public function create()
     {
+        
         $rol = Auth::user()->rol_id;
         $user = Auth::user()->id;
         return view('documentos.crear', compact('user' ,'rol'));
@@ -102,7 +103,9 @@ class DocumentoController extends Controller
     public function update(Request $request, $id)
     {
         //
-
+        request()->validate([
+            'nombre'=>'required',
+        ]);
         $documento = request()->except('_token', '_method');
 
         if ($doc = $request->file('documento')) {

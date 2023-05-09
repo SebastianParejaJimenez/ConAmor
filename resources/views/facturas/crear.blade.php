@@ -54,7 +54,7 @@
                                                     @endif
                                                 </td>
 
-                                                <td><input type="number" name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                                <td><input type="number" name='cantidad[]' min="1" placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
                                                 <td><input type="number" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
                                                 <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
                                             </tr>
@@ -92,14 +92,17 @@
                                             <div class="card-header">
                                                 <h4>Cliente</h4>
                                                 <select name='cliente_id' id="nombre" class="form-control">
-                                                    <option value="" disabled>Seleccione una Opcion</option>
+                                                    <option value="" selected disabled>Seleccione una Opcion</option>
                                                     @foreach($clientes as $cliente)
                                                     <option value="{{$cliente->id_cliente}}">{{$cliente->nombre_cliente}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            @if(empty($cliente))
+                                                    <a href="/productos">¿No tienes Clientes?, Pulsa Aqui para Añadir</a>
+                                            @endif
                                         </div>
-                                        <input type="hidden" name="estado" value="activo">
+                                        <input type="hidden" name="estado" value="ACTIVO">
                         </form>
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                             <button type="submit" class="btn btn-primary">Guardar</button>

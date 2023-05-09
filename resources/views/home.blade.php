@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
+@section('title')
+Inicio
+@endsection
 @section('content')
 @php
 use App\Models\Cliente;
@@ -108,8 +111,8 @@ $cant_docs = Documento::count();
 
          <section class="section">
              <div class="section-body">
-                <h2 class="section-title">Ganancias Mensuales</h2>
-                <p class="section-lead">La siguiente grafica representara las ganancias generadas mensuales.</p>
+                <h2 class="section-title">Ganancias del Mes Actual</h2>
+                <p class="section-lead">La siguiente grafica representara las ganancias generadas por el mes actual.</p>
                 <div class="row">
                     <div class="col-lg-12">
                             <div class="card-body">

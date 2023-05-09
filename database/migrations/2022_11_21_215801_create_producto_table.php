@@ -18,6 +18,7 @@ class CreateProductoTable extends Migration
             $table->string('nombre', 50);
             $table->string('tipo', 30);
             $table->integer('precio');
+            $table->string('estado')->default('ACTIVO');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

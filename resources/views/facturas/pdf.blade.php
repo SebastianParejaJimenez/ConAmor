@@ -115,12 +115,14 @@ form{
     <div id="invoice-top">
       <div class="info">
         <h2>Nombre del Cliente: {{$cliente->nombre_cliente}}</h2>
-        <p> Documento del Cliente:  {{$cliente->documento_identidad}}</br>
+        <p> <strong> Documento del Cliente: </strong>{{$cliente->documento_identidad}}</br>
         </p>
       </div><!--End Info-->
       <div class="title">
-        <h1>ID FACTURA #{{$factura->id_factura}}</h1>
-        <p>Fecha de Creacion: {{$factura->created_at}}</br>
+        <h1>FACTURA #{{$factura->id_factura}}</h1>
+        <p> <b> Fecha de Creacion: </b>{{ \Carbon\Carbon::parse($factura->created_at)->formatLocalized('%d %B %Y');}}</br>
+        <p> <b> Hora de Creacion: </b>{{ \Carbon\Carbon::parse($factura->created_at)->formatLocalized('%I:%M %p');}}</br>
+
         </p>
       </div><!--End Title-->
     </div><!--End InvoiceTop-->

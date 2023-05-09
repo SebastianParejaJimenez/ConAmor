@@ -42,6 +42,5 @@
     <a class="nav-link" href="{{ url('/documentos') }}">
         <i class=" far fa-file-alt"></i><span>Documentos</span>
     </a>
-
 </li>
 

@@ -24,8 +24,17 @@ class GraficasController extends Controller
 
         // Obtiene las etiquetas de los meses del año.
         $labels = Factura::obtenerLabels();
+
+        //
+        $total_anual = DB::table('facturas')
+        ->select(DB::raw('SUM(total) as total_anual'))
+        ->whereYear('created_at', $ano)
+        ->where('estado', '=', 'activo')
+        ->first();
     
-        return view('graficas.ventas', ['ventas' => $ventas, 'labels' => $labels, 'ano' => $ano, 'rol' => $rol]);
+    $ventas_anuales = $total_anual->total_anual;
+    
+        return view('graficas.ventas', ['ventas' => $ventas, 'labels' => $labels, 'ano' => $ano, 'rol' => $rol, 'ventas_anuales' => $ventas_anuales]);
     }
     
 

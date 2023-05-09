@@ -96,7 +96,7 @@ $('.formulario-eliminar').submit(function(e){
 e.preventDefault();
 
 Swal.fire({
-  title: 'Estas Seguro de Eliminar el Proveedor?',
+  title: 'Estas Seguro de Eliminar el Documento?',
   text: "No podras recuperarlo si lo eliminas.",
   icon: 'warning',
   showCancelButton: true,
