@@ -31,7 +31,7 @@ $cant_docs = Documento::count();
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-
+@if($rol==1)
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="card card-statistic-1">
                                     <div class="card-icon bg-info">
@@ -48,6 +48,24 @@ $cant_docs = Documento::count();
                                     </div>
                                 </div>
                             </div>
+@else
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-secondary">
+                                        <i class="fas fa-file"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Documentos</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{$cant_docs}}
+                                        </div>
+                                        <a href="{{ url('/documentos') }}"><i class="fa fa-share mr-2" aria-hidden="true"></i>Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+@endif
 
 
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -111,15 +129,33 @@ $cant_docs = Documento::count();
 
          <section class="section">
              <div class="section-body">
-                <h2 class="section-title">Ganancias del Mes Actual</h2>
+                <h2 class="section-title">Ganancias del Mes de <b>{{$mes_actual}}</b></h2>
                 <p class="section-lead">La siguiente grafica representara las ganancias generadas por el mes actual.</p>
                 <div class="row">
                     <div class="col-lg-12">
                             <div class="card-body">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h1>{{ $chart->options['chart_title'] }}</h1>
-                                        {!! $chart->renderHtml() !!}
+
+                                    <div class="col-lg-3 col-sm-6 col-6 float-right">
+                                        <div class="card card-statistic-1">
+                                            <div class="card-icon shadow-primary bg-primary">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </div>
+                                            <div class="card-wrap">
+                                                <div class="card-header">
+                                                    <h4>Total facturado en el mes Actual</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                {{$total_mensual_actual}}
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <h2>Ventas del Mes Actual</h2>
+                                        <p>El siguiente grafico de barras le permitira conocer las ventas hechas durante todo el mes actual, esta se ira actualizando cada mes.</p>
+                                        <canvas id="graficaVentas"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -132,12 +168,39 @@ $cant_docs = Documento::count();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
         @endsection
-        @section('scripts')
-        {!! $chart->renderHtml() !!}
-        {!! $chart->renderChartJsLibrary() !!}
-        {!! $chart->renderJs() !!}
-        @endsection
 
+<!--         Script generar grafica del HomeController 
+ -->        @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ventas = {!! json_encode($ventas) !!};
+        var labels = {!! json_encode($labels) !!};
+
+        var ctx = document.getElementById('graficaVentas').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Ventas totales del Dia',
+                    data: ventas,
+                    backgroundColor: 'rgb(168,175,233)',
+                    borderColor: 'rgb(103,119,239)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+@endsection
 
         @push('scripts')
 

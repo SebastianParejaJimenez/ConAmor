@@ -15,7 +15,7 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id('id_factura');
-            $table->integer('total');
+            $table->string('total');
             $table->unsignedBigInteger('cliente_id');
             $table->string('estado')->default('ACTIVO');
             $table->foreign('cliente_id')->references('id_cliente')->on('clientes');

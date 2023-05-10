@@ -54,7 +54,7 @@
                                                     @endif
                                                 </td>
 
-                                                <td><input type="number" name='cantidad[]' min="1" placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                                <td><input name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
                                                 <td><input type="number" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
                                                 <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
                                             </tr>
@@ -81,7 +81,7 @@
                                             <table class="table table-bordered table-hover" id="tab_logic_total">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="text-center"><input name='total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+                                                        <td class="text-center"><input name='total' placeholder='0' class="form-control" id="sub_total" readonly /></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -164,7 +164,7 @@
         new_row += "<option value='' disabled selected>Seleccione una Opcion</option>";
         new_row += "@foreach($productos as $producto)<option value='{{$producto->id_producto}}'>{{$producto->nombre}}</option>@endforeach";
         new_row += "</select></td>";
-        new_row += "<td><input type='number' name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
+        new_row += "<td><input type='number' name='cantidad[]' min='1' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
         new_row += "<td><input type='number' name='precio[]' placeholder='Precio del Producto' class='form-control precio price-input' readonly/></td>";
         new_row += "<td><input id='total_calc_" + (current_index + 1) + "' type='' name='total_cantidad[]' placeholder='Total' class='form-control total' readonly value='' /></td>";
         new_row += "</tr>";

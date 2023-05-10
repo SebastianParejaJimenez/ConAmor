@@ -61,13 +61,7 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        request()->validate([
-            'total' => 'required',
-            'cantidad' => 'required',
-            'total' => 'required',
-            'cliente_id'=>'required',
-        ]);
-
+        $this->validate($request, ['total' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
         Factura::create($request->all());
         $id_factura = Factura::max('id_factura');
         $total = $request->total_cantidad;

@@ -10,7 +10,7 @@ class Factura extends Model
 {
     protected $primaryKey = 'id_factura';
     use HasFactory;
-    protected $fillable = ['total', 'cliente_id','estado'];
+    protected $fillable = ['total','cliente_id','estado'];
     protected $table = 'facturas';
 
     /**
