@@ -24,6 +24,7 @@ class ProductoController extends Controller
             $productos = DB::table('productos')
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
+            ->where('productos.estado', 'ACTIVO')
             ->paginate(5);
 
             
@@ -145,13 +146,19 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $rol = Auth::user()->rol_id;
-        if ($rol==1) {
-            Producto::find($id)->delete();
-            return redirect()->route('productos.index')->with('eliminado','ok');        
+        public function destroy($id)
+        {
+            $rol = Auth::user()->rol_id;
+            if ($rol == 1) {
+                $producto = Producto::find($id);
+                if ($producto->estado == 'ACTIVO') {
+                    $producto->estado = 'INACTIVO';
+                    $producto->save();
+                    return redirect()->route('productos.index')->with('eliminado', 'ok');
+                } else {
+                    return redirect()->route('productos.index')->with('error', 'El producto ya está inactivo.');
+                }
+            }
+            
         }
-        
-    }
 }

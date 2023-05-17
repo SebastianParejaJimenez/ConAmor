@@ -16,7 +16,7 @@ $cant_usuarios = User::count();
 use App\Models\Proveedor;
 $cant_prov = Proveedor::count();
 use App\Models\Producto;
-$cant_prod = Producto::count();
+$cant_prod = Producto::where('estado', 'ACTIVO')->count();
 use App\Models\Documento;
 $cant_docs = Documento::count();
 @endphp
@@ -148,6 +148,9 @@ $cant_docs = Documento::count();
                                                 </div>
                                                 <div class="card-body">
                                                 {{$total_mensual_actual}}
+                                                @if(!$total_mensual_actual)
+                                                <p>No existen Facturas.</p>
+                                                @endif
                                                     
                                                 </div>
                                             </div>

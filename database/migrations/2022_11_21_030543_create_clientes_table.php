@@ -17,6 +17,7 @@ class CreateClientesTable extends Migration
             $table->id('id_cliente');
             $table->string('nombre_cliente', 255);
             $table->string('documento_identidad', 13)->unique();
+            $table->string('estado')->default('ACTIVO');
             $table->timestamps();
         });
     }

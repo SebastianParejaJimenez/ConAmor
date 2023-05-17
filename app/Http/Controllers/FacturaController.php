@@ -47,7 +47,7 @@ class FacturaController extends Controller
         $rol = Auth::user()->rol_id;
 
         $clientes = Cliente::all();
-        $productos = Producto::all();
+        $productos = Producto::where('estado', 'ACTIVO')->get();
         return view('facturas.crear', compact('productos', 'clientes', 'rol'));
         //
     }
@@ -61,7 +61,7 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, ['total' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
+        $this->validate($request, ['total' => 'required', 'producto.*' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
         Factura::create($request->all());
         $id_factura = Factura::max('id_factura');
         $total = $request->total_cantidad;

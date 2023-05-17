@@ -68,12 +68,11 @@
                                     <h2 class="section-title">Estadisticas</h2>
                                         <p class="section-lead">El siguiente seleccionador le permitira seleccionar un año para poder consultar las estadisticas del año seleccionado.</p>
                                     <label for="">Seleccione un año al cual le desea ver sus ventas Mensuales:</label>
-                                <select id="select-ano" class="form-control">
+                                <select id="select-ano" class="form-control selectpicker" data-live-search="true"> 
                                     <option class="dropdown-item" selected disabled>Años</option>
                                     <option class="dropdown-item" value="2023">2023</option>
                                     <option class="dropdown-item" value="2024">2024</option>
                                     <option class="dropdown-item" value="2025">2025</option>
-
                                 </select>
 
                                     </div>
@@ -89,6 +88,19 @@
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+<script>
+$(function () {
+    $('select').selectpicker();
+});
+</script>
 @if(session('creado')== "ok")
 <script>
     Swal.fire({

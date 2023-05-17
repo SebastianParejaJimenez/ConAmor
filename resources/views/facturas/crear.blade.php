@@ -50,7 +50,7 @@
                                                         @endforeach
                                                     </select>
                                                     @if(empty($producto))
-                                                    <a href="/productos">¿No tienes Productos?, Pulsa Aqui para Añadir</a>
+                                                    <a href="{{ url('/productos') }}">¿No tienes Productos?, Pulsa Aqui para Añadir</a>
                                                     @endif
                                                 </td>
 
@@ -99,7 +99,7 @@
                                                 </select>
                                             </div>
                                             @if(empty($cliente))
-                                                    <a href="/productos">¿No tienes Clientes?, Pulsa Aqui para Añadir</a>
+                                                    <a href="{{ url('/clientes') }}">¿No tienes Clientes?, Pulsa Aqui para Añadir</a>
                                             @endif
                                         </div>
                                         <input type="hidden" name="estado" value="ACTIVO">
