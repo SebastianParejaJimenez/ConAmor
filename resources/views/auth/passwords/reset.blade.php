@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="card card-primary">
-        <div class="card-header"><h4>Set a New Password</h4></div>
+        <div class="card-header"><h4>Crea una nueva contraseña</h4></div>
 
         <div class="card-body">
             <form method="POST" action="{{ url('/password/reset') }}">
@@ -20,7 +20,8 @@
                 @endif
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Correo</label>
+                    <p>Ingrese el correo que ingreso previamente.</p>
                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                            name="email" tabindex="1" value="{{ old('email') }}" autofocus>
                     <div class="invalid-feedback">

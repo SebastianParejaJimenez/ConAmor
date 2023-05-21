@@ -1,1 +1,1 @@
-{{ $slot }}
+ejemplo

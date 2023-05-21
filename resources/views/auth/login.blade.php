@@ -33,7 +33,11 @@ Login
             <div class="form-group">
                 <div class="d-block">
                     <label for="password" class="control-label">Contraseña</label>
-
+                    <div class="float-right">
+                        <a href="{{ route('password.request') }}" class="text-small">
+                          Olvidaste tu contraseña?
+                        </a>
+                    </div>
                 </div>
                 <input aria-describedby="passwordHelpBlock" id="password" type="password" value="{{ (Cookie::get('password') !== null) ? Cookie::get('password') : null }}" placeholder="Ingresa la Contraseña" class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}" name="password" tabindex="2" required>
                 <div class="invalid-feedback">
@@ -46,9 +50,6 @@ Login
                     Ingresar
                 </button>
             </div>
-            <div class="mt-5 text-muted text-center">
-<!--                 ¿No estas Registrado? <a href="{{ route('register') }}">Registrarse</a>
- -->            </div>
         </form>
     </div>
 </div>

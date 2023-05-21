@@ -11,7 +11,8 @@ use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\GraficasController;
-
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 //Controladores
 
 
