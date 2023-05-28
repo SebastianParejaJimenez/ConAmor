@@ -12,7 +12,10 @@
                         <div class="card-body">
                         @if($rol===1)
                         <a class="btn btn-info mb-3" href="{{ route('productos.create') }}">Agregar Nuevo Producto</a>
+                        <a class="btn btn-warning mb-3" href="{{ route('productos.inactivo') }}">Productos Inactivos</a>
                         @endif
+                        
+                        
                             <table class="table table-stripped mt-2" id="listado">
                                 <thead>
                                     <th>ID</th>
@@ -86,6 +89,17 @@ Swal.fire({
 
 </script>
 @endif
+@if(session('Activado')== "ok")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Activado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+</script>
+@endif
 @if(session('creado')== "ok")
 <script>
     Swal.fire({
@@ -102,7 +116,7 @@ Swal.fire({
         e.preventDefault();
 
         Swal.fire({
-            title: 'Estas Seguro de Eliminar el Proveedor?',
+            title: 'Estas Seguro de Eliminar el Producto?',
             text: "No podras recuperarlo si lo eliminas.",
             icon: 'warning',
             showCancelButton: true,

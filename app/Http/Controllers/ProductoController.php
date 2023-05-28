@@ -32,7 +32,51 @@ class ProductoController extends Controller
         return view('productos.index', compact('productos','rol'));
     
     }
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inactivo()
+    {
+        //
+        
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
+        $productos = DB::table('productos')
+            ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
+            ->join('users', 'productos.user_id', '=', 'users.id')
+            ->where('productos.estado', 'INACTIVO')
+            ->paginate(5);
 
+       
+            return view('productos.inactivo', compact('productos' ,'rol'));
+   
+
+
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function activo($id)
+    {
+        $rol = Auth::user()->rol_id;
+        if ($rol == 1) {
+            $producto = Producto::find($id);
+            if ($producto->estado == 'INACTIVO') {
+                $producto->estado = 'ACTIVO';
+                $producto->save();
+                return redirect()->route('productos.inactivo')->with('Activado', 'ok');
+            } else {
+                return redirect()->route('productos.inactivo')->with('error', 'El producto ya está activo.');
+            }
+        }
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -161,4 +205,8 @@ class ProductoController extends Controller
             }
             
         }
+
+    
+   
+
 }

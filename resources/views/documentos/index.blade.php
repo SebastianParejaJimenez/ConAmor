@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-info" href="{{ route('documentos.create') }}">Agregar Nuevo Producto</a>
+                            <a class="btn btn-info" href="{{ route('documentos.create') }}">Agregar Nuevo Documento</a>
 
                             <table class="table table-stripped mt-2">
                                 <thead>

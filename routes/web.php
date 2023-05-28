@@ -36,6 +36,9 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('facturas/pdf/{id_factura}', [FacturaController::class, 'pdf'])->name('facturas.pdf');
     Route::get('/get-product-price/{id_producto}', [FacturaController::class, 'getProductPrice'])->name('get-product-price');
     Route::get('/graficas/ventas/{ano}', [GraficasController::class, 'ventas'])->name('graficas.ventas');
+    Route::get('productos/inactivo', [ProductoController::class,'inactivo'])->name('productos.inactivo');
+    Route::get('productos/activo/{id_producto}', [ProductoController::class,'activo'])->name('productos.activo');    
+
 
     Route::resource('graficas', GraficasController::class);
     Route::resource('roles', RolController::class);
