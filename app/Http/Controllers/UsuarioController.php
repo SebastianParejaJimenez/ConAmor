@@ -10,7 +10,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Proveedor;
+use App\Models\Productos;
 
 
 class UsuarioController extends Controller
@@ -141,7 +142,28 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        User::find($id)->delete();
-        return redirect()->route('usuarios.index')->with('eliminado', 'ok');
+/*         User::find($id)->delete();
+        return redirect()->route('usuarios.index')->with('eliminado', 'ok'); */
+
+        $user = User::find($id);
+
+        if (!$user) {
+            // El usuario no existe
+            return redirect()->back()->with('error', 'El usuario no se encontró.');
+        }
+    
+        // Verificar las relaciones y tomar acciones según sea necesario
+        if ($user->proveedores()->exists() or $user->productos()->exists() or $user->clientes()->exists() or $user->documentos()->exists()) {
+            // Mostrar mensaje de error en la vista
+            return redirect()->back()->with('error', 'usuario_datos_creados');
+        }
+    
+        // Resto de las relaciones...
+    
+        // Eliminar el usuario
+        $user->delete();
+    
+        // Redireccionar con un mensaje de éxito
+        return redirect()->back()->with('success', 'El usuario ha sido eliminado correctamente.');
     }
 }

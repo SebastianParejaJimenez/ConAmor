@@ -12,7 +12,7 @@
                         <div class="card-body">
                         @if($rol===1)
                         <a class="btn btn-info mb-3" href="{{ route('productos.create') }}">Agregar Nuevo Producto</a>
-                        <a class="btn btn-warning mb-3" href="{{ route('productos.inactivo') }}">Productos Inactivos</a>
+                        <a class="btn btn-warning mb-3 " href="{{ route('productos.inactivo') }}">Productos Inactivos</a>
                         @endif
                         
                         
@@ -50,7 +50,7 @@
                                                 @csrf
 
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Borrar</button>
+                                                <button type="submit" class="btn btn-danger">Inhabilitar</button>
 
                                             </form>
                                         </td>
@@ -116,8 +116,8 @@ Swal.fire({
         e.preventDefault();
 
         Swal.fire({
-            title: 'Estas Seguro de Eliminar el Producto?',
-            text: "No podras recuperarlo si lo eliminas.",
+            title: 'Estas Seguro de Inhabilitar el Producto?',
+            text: 'Podras recuperarlo si vas a el apartado de "Productos Inhabilitados".',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

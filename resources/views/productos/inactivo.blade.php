@@ -7,7 +7,7 @@
     </div>
     <div class="section-body">
         <h2 class="section-title">Listado productos Inactivos</h2>
-        <p class="section-lead">La siguiente tabla le permitira visualizar los productos Inactivos y Activar el deseado</p>
+        <p class="section-lead">La siguiente tabla le permitira ver los productos Inactivos, Si desea Activarlos simplemente de al boton de Habilitar.</p>
 
     </div>
     <div class="section-body">
@@ -26,6 +26,7 @@
                                 <th>Creado por</th>
                                 <th>Hora de Creacion</th>
                                 @if ($rol===1)
+                                <th>Estado</th>
                                 <th>ACCIONES</th>
                                 @endif
                             </thead>
@@ -43,10 +44,14 @@
                                     <td>
                                         <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($producto->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                     </td>
+                                    <td>
+                                    <span class="badge badge-pill badge-danger">INACTIVO</span>
+
+                                    </td>
                                     @if($rol===1)
 
                                     <td>
-                                        <a href="{{ route('productos.activo',$producto->id_producto) }}" class="btn btn-success">Activar</a>
+                                        <a href="{{ route('productos.activo',$producto->id_producto) }}" class="btn btn-success" onclick="validacion(event)">Activar</a>
                                     </td>
                                     @endif
                                 </tr>
@@ -84,6 +89,28 @@
 </script>
 @endif
 
+<script>
+function validacion(event) {
+    event.preventDefault();
+
+    Swal.fire({
+            title: 'Estas Seguro de Habilitar el Producto?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = event.target.href;
+            }
+        })
+}
+
+
+
+</script>
 <script>
     $('#listado').dataTable({
         language: {

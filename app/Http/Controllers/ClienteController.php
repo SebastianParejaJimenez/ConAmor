@@ -18,7 +18,7 @@ class ClienteController extends Controller
         //
         $rol = Auth::user()->rol_id;
 
-        $clientes = Cliente::paginate(5);
+        $clientes = Cliente::paginate();
         return view('clientes.index', compact('clientes', 'rol'));
     }
 

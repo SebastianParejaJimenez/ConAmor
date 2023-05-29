@@ -21,7 +21,7 @@ class ProveedorController extends Controller
         $proveedores = DB::table('proveedors')
         ->select('id_proveedor', 'nombre','telefono', 'direccion','correo', 'name','proveedors.created_at')
         ->join('users', 'proveedors.user_id', '=', 'users.id')
-        ->paginate(5);
+        ->paginate();
         $proveedores4 = Proveedor::paginate(5);
         return view('proveedores.index', compact('proveedores', 'rol'));
     }

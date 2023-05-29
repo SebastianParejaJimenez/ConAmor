@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
+                    <label for="password" class="control-label">Contraseña</label>
                     <input id="password" type="password"
                            class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}" name="password"
                            tabindex="2">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation" class="control-label">Confirm Password</label>
+                    <label for="password_confirmation" class="control-label">Confirmar Contraseña</label>
                     <input id="password_confirmation" type="password"
                            class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}"
                            name="password_confirmation" tabindex="2">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Set a New Password
+                        Cambiar Contraseña
                     </button>
                 </div>
             </form>

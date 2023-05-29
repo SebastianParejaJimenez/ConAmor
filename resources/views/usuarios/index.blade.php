@@ -97,7 +97,15 @@ Swal.fire({
     })
 </script>
 @endif
-
+@if(session('error')== "usuario_datos_creados")
+<script>
+Swal.fire({
+  icon: 'error',
+    title: 'Parece que algo anda mal',
+  text: '¡Este usuario ha creado algo en el sistema, debe ser eliminado para que este usuario se pueda eliminar!',
+})
+</script>
+@endif
 <script>
 
 $('.formulario-eliminar').submit(function(e){

@@ -25,7 +25,7 @@ class ProductoController extends Controller
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->where('productos.estado', 'ACTIVO')
-            ->paginate(5);
+            ->paginate();
 
             
         $productos5=Producto::paginate(5);
@@ -48,13 +48,10 @@ class ProductoController extends Controller
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->where('productos.estado', 'INACTIVO')
-            ->paginate(5);
+            ->paginate();
 
-       
             return view('productos.inactivo', compact('productos' ,'rol'));
    
-
-
     }
     /**
      * Remove the specified resource from storage.

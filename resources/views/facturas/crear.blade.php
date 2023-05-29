@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <section class="section">
     <div class="section-header">
@@ -43,7 +45,7 @@
                                                 <td>1</td>
 
                                                 <td>
-                                                    <select name='producto[]' id="product_id" class="form-control">
+                                                    <select name='producto[]' id="product_id" class="form-control select2">
                                                         <option value="" disabled selected>Seleccione una Opcion</option>
                                                         @foreach($productos as $producto)
                                                         <option value="{{$producto->id_producto}}">{{$producto->nombre}}</option>
@@ -91,7 +93,7 @@
                                         <div class="col-12 col-md-6 col-lg-12">
                                             <div class="card-header">
                                                 <h4>Cliente</h4>
-                                                <select name='cliente_id' id="nombre" class="form-control">
+                                                <select name='cliente_id' id="nombre" class="form-control select2">
                                                     <option value="" selected disabled>Seleccione una Opcion</option>
                                                     @foreach($clientes as $cliente)
                                                     <option value="{{$cliente->id_cliente}}">{{$cliente->nombre_cliente}}</option>
@@ -129,7 +131,24 @@
             $('#tab_logic').on('change', '.product-select', function() {
                 updatePrice($(this));
             });
+
         });
+
+        $(document).ready(function() {
+  // Inicializar Select2 en el select principal
+  $("#product_id").select2();
+
+  // Ajustar el ancho del select principal después de un breve retraso
+  setTimeout(function() {
+    $("#product_id").next(".select2-container").css("width", "100%");
+  }, 100);
+
+  // Restaurar el ancho del select principal al cambiar el tamaño de la ventana
+  $(window).on("resize", function() {
+    $("#product_id").next(".select2-container").css("width", "100%");
+  });
+});
+
 
         function updatePrice(selectElement) {
             var product_id = selectElement.val();
@@ -153,6 +172,7 @@
         $(document).ready(function() {
             
     $("#add_row").click(function() {
+        
         // Obtener el número de filas actual
         var current_row = $("#tab_logic tbody tr:last").attr("id");
         var current_index = parseInt(current_row.replace("addr", ""));
@@ -177,6 +197,8 @@
         $("#product_id_" + (current_index + 1)).on("change", function() {
             updatePrice($(this));
         });
+        $("#product_id_" + (current_index + 1)).select2();
+        $("#product_id_" + (current_index + 1)).next(".select2-container").addClass("w-100");
     });
     
     $("#delete_row").click(function() {
@@ -228,6 +250,10 @@
             $('#tax_amount').val(tax_sum.toFixed(2));
             $('#total_amount').val((tax_sum + total).toFixed(2));
         }
+
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
     </script>
 
 </section>
