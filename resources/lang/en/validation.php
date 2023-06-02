@@ -47,7 +47,7 @@ return [
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',
-    'file' => 'The :attribute must be a file.',
+    'file' => 'El :attribute debe de ser un documento.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'numeric' => 'El Atributo :attribute excede el rango valido, el cual es: :value.',
@@ -88,8 +88,8 @@ return [
         'string' => 'El atributo :attribute no puede exceder el rango de: :max caracteres.',
         'array' => 'El atributo :attribute no puede exceder el rango de: :max items.',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
-    'mimetypes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => 'El :attribute debe de ser un archivo tipo: :values.',
+    'mimetypes' => 'El :attribute debe de ser un archivo tipo: :values.',
     'min' => [
         'numeric' => 'Error en: :attribute, su valor minimo es ":min".',
         'file' => 'The :attribute must be at least :min kilobytes.',
