@@ -141,12 +141,6 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-            'digits_between' => 'El valor excede el limite del rango'
-        ],
-    ],
 
     'attributes' => [
         'password' => 'Contraseña',
@@ -156,6 +150,7 @@ return [
         'password.required' => 'El campo :attribute es requerido.',
         'name.required'=> 'El campo :attribute es requerido.',
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +163,5 @@ return [
     |
     */
 
-    'attributes' => [],
 
 ];

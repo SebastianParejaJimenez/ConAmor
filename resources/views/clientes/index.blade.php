@@ -14,6 +14,8 @@ Clientes
                     <div class="card-body">
                         @if($rol===1)
                         <a class="btn btn-info mb-3" href="{{ route('clientes.create') }}">Agregar Nuevo Cliente</a>
+                        <a class="btn btn-warning mb-3" href="{{ route('clientes.inactivo') }}">Clientes Inactivos</a>
+
                         @endif
 
                         <table class="table table-stripped mt-2" id="listado">
@@ -21,6 +23,7 @@ Clientes
                                 <th>Nombre</th>
                                 <th>Documento de Identidad</th>
                                 <th>Hora de Creacion</th>
+                                <th>Estado</th>
                                 @if($rol===1)
 
                                 <th>Acciones</th>
@@ -34,18 +37,21 @@ Clientes
                                     <td>
                                         <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($cliente->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                     </td>
-
+                                    <td>
+                                    <span class="badge badge-pill badge-success">ACTIVO</span>
+                                    </td>
 
                                     @if($rol===1)
 
                                     <td>
 
                                         <a href="{{ route('clientes.edit',$cliente->id_cliente) }}" class="btn btn-info">Editar</a>
+                                        
                                         <form action="{{ route('clientes.destroy',$cliente->id_cliente) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                             @csrf
 
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                            <button type="submit" class="btn btn-danger">Inhabilitar</button>
 
                                         </form>
 
@@ -78,7 +84,7 @@ Clientes
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Eliminado con Exito!',
+        title: 'Inhabilitado con Exito!',
         showConfirmButton: false,
         timer: 900
     })
@@ -100,8 +106,8 @@ Clientes
         e.preventDefault();
 
         Swal.fire({
-            title: 'Estas Seguro de Eliminar el Cliente?',
-            text: "No podras recuperarlo si lo eliminas.",
+            title: 'Estas Seguro de Inhabilitar el Cliente?',
+            text: "Lo podras recuperar en el apartado de Clientes Inactivos.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

@@ -46,7 +46,7 @@ class FacturaController extends Controller
     {
         $rol = Auth::user()->rol_id;
 
-        $clientes = Cliente::all();
+        $clientes = Cliente::where('estado', 'ACTIVO')->get();
         $productos = Producto::where('estado', 'ACTIVO')->get();
         return view('facturas.crear', compact('productos', 'clientes', 'rol'));
         //

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cliente;
@@ -18,7 +18,7 @@ class ClienteController extends Controller
         //
         $rol = Auth::user()->rol_id;
 
-        $clientes = Cliente::paginate();
+        $clientes = Cliente::where('estado', 'ACTIVO')->paginate();
         return view('clientes.index', compact('clientes', 'rol'));
     }
 
@@ -64,12 +64,6 @@ class ClienteController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -79,7 +73,41 @@ class ClienteController extends Controller
             return view('clientes.editar',compact('cliente', 'rol'));
         }
     }
+    public function inactivo()
+    {
+        //
+        
+        $rol = Auth::user()->rol_id;
+        $user = Auth::user()->id;
+        $clientes = DB::table('clientes')
+            ->select('id_cliente', 'nombre_cliente','documento_identidad', 'clientes.created_at')
+            ->where('clientes.estado', 'INACTIVO')
+            ->paginate();
 
+            return view('clientes.inactivo', compact('clientes' ,'rol'));
+   
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function activo($id)
+    {
+        $rol = Auth::user()->rol_id;
+        if ($rol == 1) {
+            $clientes = Cliente::find($id);
+            if ($clientes->estado == 'INACTIVO') {
+                $clientes->estado = 'ACTIVO';
+                $clientes->save();
+                return redirect()->route('clientes.inactivo')->with('Activado', 'ok');
+            } else {
+                return redirect()->route('clientes.inactivo')->with('error', 'El cliente ya está activo.');
+            }
+        }
+        
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -110,7 +138,16 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
-        Cliente::find($id)->delete();
-        return redirect()->route('clientes.index')->with('eliminado','ok');
+        $rol = Auth::user()->rol_id;
+        if ($rol == 1) {
+            $cliente = Cliente::find($id);
+            if ($cliente->estado == 'ACTIVO') {
+                $cliente->estado = 'INACTIVO';
+                $cliente->save();
+                return redirect()->route('clientes.index')->with('eliminado', 'ok');
+            } else {
+                return redirect()->route('clientes.index')->with('error', 'El Cliente ya está inactivo.');
+            }
+        }
     }
 }

@@ -38,6 +38,8 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/graficas/ventas/{ano}', [GraficasController::class, 'ventas'])->name('graficas.ventas');
     Route::get('productos/inactivo', [ProductoController::class,'inactivo'])->name('productos.inactivo');
     Route::get('productos/activo/{id_producto}', [ProductoController::class,'activo'])->name('productos.activo');    
+    Route::get('clientes/inactivo', [ClienteController::class,'inactivo'])->name('clientes.inactivo');
+    Route::get('clientes/activo/{id_cliente}', [ClienteController::class,'activo'])->name('clientes.activo');    
 
 
     Route::resource('graficas', GraficasController::class);
