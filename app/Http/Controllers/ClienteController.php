@@ -18,7 +18,7 @@ class ClienteController extends Controller
         //
         $rol = Auth::user()->rol_id;
 
-        $clientes = Cliente::where('estado', 'ACTIVO')->paginate();
+        $clientes = Cliente::where('estado', 'ACTIVO')->get();
         return view('clientes.index', compact('clientes', 'rol'));
     }
 
@@ -78,14 +78,17 @@ class ClienteController extends Controller
         //
         
         $rol = Auth::user()->rol_id;
-        $user = Auth::user()->id;
-        $clientes = DB::table('clientes')
-            ->select('id_cliente', 'nombre_cliente','documento_identidad', 'clientes.created_at')
-            ->where('clientes.estado', 'INACTIVO')
-            ->paginate();
+        if ($rol==1) {
+            $user = Auth::user()->id;
+            $clientes = DB::table('clientes')
+                ->select('id_cliente', 'nombre_cliente','documento_identidad', 'clientes.created_at')
+                ->where('clientes.estado', 'INACTIVO')
+                ->get();
+    
+                return view('clientes.inactivo', compact('clientes' ,'rol'));        
+            }
+            return redirect()->route('clientes.index');
 
-            return view('clientes.inactivo', compact('clientes' ,'rol'));
-   
     }
     /**
      * Remove the specified resource from storage.
@@ -146,7 +149,7 @@ class ClienteController extends Controller
                 $cliente->save();
                 return redirect()->route('clientes.index')->with('eliminado', 'ok');
             } else {
-                return redirect()->route('clientes.index')->with('error', 'El Cliente ya está inactivo.');
+                return redirect()->route('clientes.index')->with('error', 'cliente_inactivo');
             }
         }
     }

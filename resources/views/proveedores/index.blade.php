@@ -13,7 +13,7 @@
                         @if($rol===1)
                         <a class="btn btn-info mb-3" href="{{ route('proveedores.create') }}">Agregar Nuevo Proveedor</a>
                         @endif
-
+                    <div class="table-responsive">   
                         <table class="table table-stripped mt-2" id="listado">
                             <thead>
                                 <th>Nombre</th>
@@ -58,9 +58,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination justify-content-end">
-                            {!! $proveedores->links() !!}
-                        </div>
+                    </div>
 
 
                     </div>

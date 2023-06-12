@@ -62,7 +62,7 @@ class UsuarioController extends Controller
         $this->validate($request,[
         'name'=>'required',
         'email'=>'required|email|unique:users,email', 
-        'password'=>'required|same:confirm-password',
+        'password'=>'required|same:confirm-password|min:6',
         'rol_id'=>'required'
      ]);
     $input = request()->all();
@@ -114,7 +114,7 @@ class UsuarioController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:users,email,'.$id, 
-            'password'=>'same:confirm-password',
+            'password'=>'same:confirm-password|min:6',
             'rol_id' => 'required'
         ]);
 
@@ -153,7 +153,7 @@ class UsuarioController extends Controller
         }
     
         // Verificar las relaciones y tomar acciones según sea necesario
-        if ($user->proveedores()->exists() or $user->productos()->exists() or $user->clientes()->exists() or $user->documentos()->exists()) {
+        if ($user->proveedores()->exists() or $user->productos()->exists() or $user->documentos()->exists()) {
             // Mostrar mensaje de error en la vista
             return redirect()->back()->with('error', 'usuario_datos_creados');
         }
@@ -164,6 +164,6 @@ class UsuarioController extends Controller
         $user->delete();
     
         // Redireccionar con un mensaje de éxito
-        return redirect()->back()->with('success', 'El usuario ha sido eliminado correctamente.');
+        return redirect()->back()->with('success', 'ok');
     }
 }

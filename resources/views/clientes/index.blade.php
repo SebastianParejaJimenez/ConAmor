@@ -12,12 +12,13 @@ Clientes
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        @if($rol===1)
                         <a class="btn btn-info mb-3" href="{{ route('clientes.create') }}">Agregar Nuevo Cliente</a>
+                        @if($rol===1)
+
                         <a class="btn btn-warning mb-3" href="{{ route('clientes.inactivo') }}">Clientes Inactivos</a>
 
                         @endif
-
+                    <div class="table-responsive">   
                         <table class="table table-stripped mt-2" id="listado">
                             <thead>
                                 <th>Nombre</th>
@@ -61,9 +62,7 @@ Clientes
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination justify-content-end">
-                            {!! $clientes->links() !!}
-                        </div>
+                    </div>
 
 
                     </div>
@@ -101,6 +100,20 @@ Clientes
     })
 </script>
 @endif
+
+@if(session('error')== "cliente_inactivo")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'El cliente ya esta inactivo.',
+        showConfirmButton: false,
+        timer: 5000
+    })
+</script>
+@endif
+
+
 <script>
     $('.formulario-eliminar').submit(function(e) {
         e.preventDefault();

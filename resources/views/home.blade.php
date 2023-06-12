@@ -10,7 +10,7 @@ Inicio
 @section('content')
 @php
 use App\Models\Cliente;
-$cant_cliente = Cliente::count();
+$cant_cliente = Cliente::where('estado', 'ACTIVO')->count();
 use App\Models\User;
 $cant_usuarios = User::count();
 use App\Models\Proveedor;

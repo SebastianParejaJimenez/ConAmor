@@ -16,6 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a class="btn btn-info mb-3" href="/productos">Productos Activos</a>
+                    <div class="table-responsive">   
                         <table class="table table-stripped mt-2" id="listado">
                             <thead>
                                 <th>ID</th>
@@ -58,12 +59,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination justify-content-end">
-                            {!! $productos->links() !!}
-                        </div>
+                    </div>   
 
 
-                    </div>
+                    </7div>
                 </div>
             </div>
         </div>

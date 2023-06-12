@@ -10,14 +10,18 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-info" href="{{ route('documentos.create') }}">Agregar Nuevo Documento</a>
-
-                            <table class="table table-stripped mt-2">
+                            @if($rol==1)
+                            <a class="btn btn-info mb-3" href="{{ route('documentos.create') }}">Agregar Nuevo Documento</a>
+                            @endif
+                        <div class="table-responsive">   
+                            <table class="table table-stripped mt-2" id="listado">
                                 <thead>
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Documento</th>
+                                    @if($rol==1)
                                     <th>Acciones</th>
+                                    @endif
                                 </thead>
                                 <tbody>
                                 @foreach($documentos as $documento)
@@ -33,6 +37,7 @@
                                             </object>
                                         </td>
                                         
+                                        @if($rol==1)
 
                                         <td>
                                         <a href="{{ route('documentos.edit',$documento->id_documento) }}" class="btn btn-info" >Editar</a>
@@ -45,13 +50,12 @@
 
                                             </form>
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination justify-content-end">
-                                    {!! $documentos->links() !!}
-                            </div>
+                        </div>
 
 
                         </div>
@@ -65,6 +69,9 @@
 @section('scripts')
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
 <link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
 
 @if(session('eliminado')== "ok")
 <script>
@@ -113,5 +120,29 @@ Swal.fire({
         });
 
     </script>
+<script>
+ $('#listado').dataTable({
+    language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+});
 
+ </script>  
 @endsection

@@ -16,6 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a class="btn btn-info mb-3" href="{{ route('clientes.index') }}">Clientes Activos</a>
+                    <div class="table-responsive">   
                         <table class="table table-stripped mt-2" id="listado">
                             <thead>
                                 <th>ID</th>
@@ -43,7 +44,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                    </div>
 
                     </div>
                 </div>

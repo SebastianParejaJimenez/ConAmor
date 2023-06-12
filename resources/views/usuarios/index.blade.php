@@ -16,6 +16,7 @@
 
                             <a class="btn btn-info mb-3" href="{{ route('usuarios.create') }}">Agregar Nuevo Usuario</a>
                         @endif
+                        <div class="table-responsive">   
                             <table class="table table-stripped mt-2" id="listado">
                                 <thead>
                                     <th>ID</th>
@@ -56,8 +57,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination justify-content-end">
-                            </div>
+
+                        </div>
+        
 
                         </div>
                     </div>

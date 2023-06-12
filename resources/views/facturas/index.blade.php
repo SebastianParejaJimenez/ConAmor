@@ -12,7 +12,7 @@
                         <div class="card-body">
                             
                             <a class="btn btn-info mb-3" href="{{ route('facturas.create') }}">Crear Nueva Factura</a>
-
+                        <div class="table-responsive">   
                             <table class="table table-stripped " id="listado_facturas">
                                 <thead class="thead-dark">
                                     <th>ID</th>
@@ -32,10 +32,12 @@
                                         <td>
                                         <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($factura->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
                                         </td>
-                                        <td>{{$factura->estado}}</td>
-
+                                        <td>
+                                        <span class="badge badge-pill badge-success">ACTIVO</span>
+                                    </td>
                                         <td>
                                         <a href="{{ route('facturas.pdf',$factura->id_factura) }}" class="btn btn-success" >Detalles Factura</a>
+                                        @if($rol==1)
                                         <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                             @csrf
 
@@ -43,15 +45,14 @@
                                             <button type="submit" class="btn btn-danger">Inhabilitar</button>
 
                                         </form>
+                                        @endif
                                     </td>
                                     </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination justify-content-end">
-                                {!! $facturas->links() !!}
-                            </div>
+                        </div>
 
 
                         </div>

@@ -15,14 +15,15 @@
                         <a class="btn btn-warning mb-3 " href="{{ route('productos.inactivo') }}">Productos Inactivos</a>
                         @endif
                         
-                        
-                            <table class="table table-stripped mt-2" id="listado">
+                        <div class="table-responsive">   
+                            <table class="table table-stripped mt-2 " id="listado">
                                 <thead>
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Tipos</th>
                                     <th>Precio</th>
                                     <th>Creado por</th>
+                                    <th>Estado</th>
                                     <th>Hora de Creacion</th>
                                     @if ($rol===1)  
                                     <th>ACCIONES</th>
@@ -37,6 +38,9 @@
                                         <td>{{$producto->precio}}</td>
                                         <td>
                                             <span class="badge badge-pill badge-primary">{{$producto->name}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-pill badge-success">ACTIVO</span>
                                         </td>
                                         <td>
                                         <span class="badge badge-pill badge-light">{{ \Carbon\Carbon::parse($producto->created_at)->formatLocalized('%d %B %Y %I:%M %p');}}</span>
@@ -59,9 +63,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination justify-content-end">
-                                {!! $productos->links() !!}
-                            </div>
+                        </div> 
 
 
                         </div>
@@ -100,6 +102,9 @@ Swal.fire({
     })
 </script>
 @endif
+
+<!-- Scripts para Confirmaciones
+ -->
 @if(session('creado')== "ok")
 <script>
     Swal.fire({
@@ -111,6 +116,21 @@ Swal.fire({
     })
 </script>
 @endif
+
+@if(session('error')== "pruducto_inactivo")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'El producto ya esta inactivo.',
+        showConfirmButton: false,
+        timer: 5000
+    })
+</script>
+@endif
+
+
+
 <script>
     $('.formulario-eliminar').submit(function(e) {
         e.preventDefault();
@@ -134,6 +154,7 @@ Swal.fire({
 </script>
 <script>
  $('#listado').dataTable({
+    responsive: true,
     language: {
         "decimal": "",
         "emptyTable": "No hay información",

@@ -32,7 +32,7 @@ class FacturaController extends Controller
         ->join('clientes', 'facturas.cliente_id', '=', 'clientes.id_cliente')
         ->orderBy('id_factura','ASC')
         ->where('facturas.estado', '=', 'activo')
-        ->paginate();
+        ->get();
 
         return view('facturas.index', compact('facturas', 'usuario', 'rol'));
     }
@@ -61,7 +61,7 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, ['total' => 'required', 'producto.*' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
+        $this->validate($request, ['total' => 'required', 'producto.*' => 'required', 'precio.*' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
         Factura::create($request->all());
         $id_factura = Factura::max('id_factura');
         $total = $request->total_cantidad;
@@ -139,13 +139,18 @@ class FacturaController extends Controller
     public function destroy($id)
     {
         //
-        $resultados = Factura::select('id_factura', 'estado')->where('id_factura',$id);
+        $rol = Auth::user()->rol_id;
+    if ($rol==1) {
+      $resultados = Factura::select('id_factura', 'estado')->where('id_factura',$id);
             # code...
             DB::table('facturas')
             ->select('estado')
             ->where('id_factura','=',$id)
             ->update(['estado'=>'eliminado']);
         return redirect()->route('facturas.index')->with('eliminado','ok');
+    }
+    return redirect()->route('facturas.index');
+
 
     
     }

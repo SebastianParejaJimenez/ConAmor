@@ -25,7 +25,7 @@ class ProductoController extends Controller
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->where('productos.estado', 'ACTIVO')
-            ->paginate();
+            ->get();
 
             
         $productos5=Producto::paginate(5);
@@ -41,17 +41,20 @@ class ProductoController extends Controller
     public function inactivo()
     {
         //
-        
+
         $rol = Auth::user()->rol_id;
+        if ($rol == 1) {
         $user = Auth::user()->id;
         $productos = DB::table('productos')
             ->select('id_producto', 'nombre','tipo','precio', 'productos.created_at', 'name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->where('productos.estado', 'INACTIVO')
-            ->paginate();
+            ->get();
 
             return view('productos.inactivo', compact('productos' ,'rol'));
-   
+        }
+        return redirect()->route('productos.index');
+
     }
     /**
      * Remove the specified resource from storage.
@@ -197,7 +200,7 @@ class ProductoController extends Controller
                     $producto->save();
                     return redirect()->route('productos.index')->with('eliminado', 'ok');
                 } else {
-                    return redirect()->route('productos.index')->with('error', 'El producto ya está inactivo.');
+                    return redirect()->route('productos.index')->with('error', 'pruducto_inactivo');
                 }
             }
             

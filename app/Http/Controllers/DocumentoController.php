@@ -18,7 +18,7 @@ class DocumentoController extends Controller
     {
         //
         $rol = Auth::user()->rol_id;
-        $documentos=Documento::paginate(5);
+        $documentos=Documento::get();
         return view('documentos.index', compact('documentos' , 'rol'));
         
 
@@ -33,8 +33,12 @@ class DocumentoController extends Controller
     {
         
         $rol = Auth::user()->rol_id;
-        $user = Auth::user()->id;
-        return view('documentos.crear', compact('user' ,'rol'));
+        if ($rol==1) {
+            $user = Auth::user()->id;
+            return view('documentos.crear', compact('user' ,'rol'));        
+        }
+        return redirect()->route('documentos.index');
+   
 
     }
 
@@ -88,9 +92,13 @@ class DocumentoController extends Controller
     {
         //
         $rol = Auth::user()->rol_id;
-        $documento = Documento::find($id);
+        if ($rol==1) {
+            $documento = Documento::find($id);
 
-        return view('documentos.editar', compact('documento', 'rol'));
+            return view('documentos.editar', compact('documento', 'rol'));
+        }
+        return redirect()->route('documentos.index');
+
     }
 
     /**
@@ -132,8 +140,16 @@ class DocumentoController extends Controller
      */
     public function destroy(Documento $documento)
     {
-        //
-        $documento->delete();
-        return redirect()->route('documentos.index')->with('eliminado','ok');
+        
+        $rol = Auth::user()->rol_id;
+
+        if ($rol==1) {
+            $documento->delete();
+            return redirect()->route('documentos.index')->with('eliminado','ok');        
+        }
+            
+        return redirect()->route('documentos.index');
+
+        
     }
 }
