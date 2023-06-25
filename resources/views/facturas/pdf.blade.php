@@ -119,7 +119,7 @@ form{
         </p>
       </div><!--End Info-->
       <div class="title">
-        <h1>FACTURA #{{$factura->id_factura}}</h1>
+        <h1>Comprobante #{{$factura->id_factura}}</h1>
         <p> <b> Fecha de Creacion: </b>{{ \Carbon\Carbon::parse($factura->created_at)->formatLocalized('%d %B %Y');}}</br>
         <p> <b> Hora de Creacion: </b>{{ \Carbon\Carbon::parse($factura->created_at)->formatLocalized('%I:%M %p');}}</br>
 
@@ -134,7 +134,6 @@ form{
           <tr class="tabletitle">
             <td class="item"><h2>Productos</h2></td>
             <td class="Hours"><h2>Cantidad</h2></td>
-            <td class="Rate"><h2>Precio</h2></td>
             <td class="subtotal"><h2>Total Unitario</h2></td>
           </tr>
             
@@ -142,13 +141,11 @@ form{
           <tr class="service">
             <td class="tableitem"><p class="itemtext">{{$factura->nombre}}</p></td>
             <td class="tableitem"><p class="itemtext">{{$factura->cantidad}}</p></td>
-            <td class="tableitem"><p class="itemtext">${{$factura->precio}}</p></td>
             <td class="tableitem"><p class="itemtext">${{$factura->total_producto}}</p></td>
           </tr>
           @endforeach
 
           <tr class="tabletitle">
-            <td></td>
             <td></td>
             <td class="Rate"><h2>Total</h2></td>
 

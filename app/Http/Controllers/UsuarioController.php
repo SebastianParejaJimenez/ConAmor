@@ -62,7 +62,7 @@ class UsuarioController extends Controller
         $this->validate($request,[
         'name'=>'required',
         'email'=>'required|email|unique:users,email', 
-        'password'=>'required|same:confirm-password|min:6',
+        'password'=>'required|same:confirmar-contraseña|min:8',
         'rol_id'=>'required'
      ]);
     $input = request()->all();
@@ -114,7 +114,7 @@ class UsuarioController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email|unique:users,email,'.$id, 
-            'password'=>'same:confirm-password|min:6',
+            'password'=>'same:confirmar-contraseña',
             'rol_id' => 'required'
         ]);
 
@@ -130,7 +130,7 @@ class UsuarioController extends Controller
         $user->update($input);
 
 /*         $user->assignRole($request->input('roles'));
- */        return redirect()->route('usuarios.index');
+ */        return redirect()->route('usuarios.index')->with('editado', 'ok');
     }
 
     /**

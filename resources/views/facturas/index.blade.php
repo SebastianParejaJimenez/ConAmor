@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             
-                            <a class="btn btn-info mb-3" href="{{ route('facturas.create') }}">Crear Nueva Factura</a>
+                            <a class="btn btn-info mb-3" href="{{ route('facturas.create') }}">Crear Nueva Venta</a>
                         <div class="table-responsive">   
                             <table class="table table-stripped " id="listado_facturas">
                                 <thead class="thead-dark">
@@ -36,7 +36,7 @@
                                         <span class="badge badge-pill badge-success">ACTIVO</span>
                                     </td>
                                         <td>
-                                        <a href="{{ route('facturas.pdf',$factura->id_factura) }}" class="btn btn-success" >Detalles Factura</a>
+                                        <a href="{{ route('facturas.pdf',$factura->id_factura) }}" class="btn btn-success" >Comprobante</a>
                                         @if($rol==1)
                                         <form action="{{ route('facturas.destroy',$factura->id_factura) }}" method="POST" class="formulario-eliminar" style="display: inline;">
                                             @csrf
@@ -69,7 +69,7 @@
                                     <h2 class="section-title">Estadisticas</h2>
                                         <p class="section-lead">El siguiente seleccionador le permitira seleccionar un año para poder consultar las estadisticas del año seleccionado.</p>
                                     <label for="">Seleccione un año al cual le desea ver sus ventas Mensuales:</label>
-                                <select id="select-ano" class="form-control selectpicker" data-live-search="true"> 
+                                <select id="select-ano" class="form-control" data-live-search="true"> 
                                     <option class="dropdown-item" selected disabled>Años</option>
                                     <option class="dropdown-item" value="2023">2023</option>
                                     <option class="dropdown-item" value="2024">2024</option>
@@ -97,11 +97,6 @@
 
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
-<script>
-$(function () {
-    $('select').selectpicker();
-});
-</script>
 @if(session('creado')== "ok")
 <script>
     Swal.fire({
@@ -122,7 +117,7 @@ $(function () {
         e.preventDefault();
 
         Swal.fire({
-            title: '¿Estas Seguro de Eliminar esta Factura?',
+            title: '¿Estas Seguro de Eliminar esta Venta?',
             text: "No lo podras recuperarlo si lo eliminas.",
             icon: 'warning',
             showCancelButton: true,
@@ -192,7 +187,7 @@ $(function () {
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Eliminado con Exito!',
+        title: 'Inhabilitado con Exito!',
         showConfirmButton: false,
         timer: 900
     })

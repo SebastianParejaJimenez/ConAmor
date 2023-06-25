@@ -129,7 +129,7 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
 
         $cliente->update($request->all());
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('editado', 'ok');;
     }
 
     /**

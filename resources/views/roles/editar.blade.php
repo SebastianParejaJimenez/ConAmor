@@ -15,17 +15,17 @@
                     <div class="card-body">
                         <!--                         Para atrapar errores y mostrarlos
  --> @if($errors->any())
-                        <div class="alert alert-dark alert-dimissible fade show" role="alert">
-                            <strong>Revise los Campos!</strong>
-                            @foreach($errors->all() as $error)
-                            <span class="badge badge-danger">{{$error}}</span>
-                            <button class="close" data-dismiss="alert" arial-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            @endforeach
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">¡Ups! Se encontraron algunos errores:</h4>
+        <ul class="mb-0">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-                        </div>
-                        @endif
 
                         <form action="{{ route('roles.update', $roles->id_rol)}}" method="POST">
                             @csrf

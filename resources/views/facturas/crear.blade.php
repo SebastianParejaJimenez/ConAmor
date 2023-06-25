@@ -9,21 +9,23 @@
         <h1>Facturacion</h1>
     </div>
     <div class="section-body">
-        <h2 class="section-title">Generar Facturas</h2>
-        <p class="section-lead">El siguiente formulario le permitira Generar Facturas según los Productos a Seleccionar.</p>
+        <h2 class="section-title">Generar Ventas</h2>
+        <p class="section-lead">El siguiente formulario le permitira Generar Ventas según los Productos a Seleccionar.</p>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <!--Para atrapar errores y mostrarlos-->
-                         @if($errors->any())
-                        <div class="alert " role="alert">
-                            @foreach($errors->all() as $error)
-                            <button type="button" data-dismiss="alert" arial-label="Close" class="btn btn-primary btn-icon icon-left">
-                                <i class="fas fa-eye"></i> Error: <span class="badge badge-transparent">{{$error}}</span>
-                            </button>
-                            @endforeach
-                        </div>
+                        @if($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <h4 class="alert-heading">¡Ups! Se encontraron algunos errores:</h4>
+                                <ul class="mb-0">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
 
                         <form action="{{ route('facturas.store')}}" method="POST">
@@ -33,16 +35,14 @@
                                     <table class="table table-sm table-hover" id="tab_logic">
                                         <thead>
                                             <tr>
-                                                <th class="text-center"> # </th>
                                                 <th class="text-center"> Productos </th>
                                                 <th class="text-center"> Cantidad </th>
                                                 <th class="text-center"> Precio </th>
-                                                <th class="text-center"> Total </th>
+                                                <th class="text-center"> Total Unitario </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr id='addr0'>
-                                                <td>1</td>
 
                                                 <td>
                                                     <select name='producto[]' id="product_id" class="form-control select2">
@@ -56,9 +56,11 @@
                                                     @endif
                                                 </td>
 
-                                                <td><input name='cantidad[]' placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
-                                                <td><input type="number" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" readonly/></td>
-                                                <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" readonly value="" /></td>
+                                                <td><input name='cantidad[]' min="1" value="1" placeholder='Ingresa la Cantidad a llevar' class="form-control cantidad"/></td>
+                                                <td><input type="number" name='precio[]' placeholder='Precio del Producto' class="form-control precio price-input" min="1" readonly/></td>
+                                                <td><input id="total_calc" type="" name='total_cantidad[]' placeholder='Total' class="form-control total" min="1" readonly value="" /></td>
+                                                <td><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+
                                             </tr>
                                             <tr id='addr1'></tr>
                                         </tbody>
@@ -66,9 +68,8 @@
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <input type="button" id="add_row" class="btn btn-primary pull-left" value="Añadir Fila">
-                                    <input type="button" id='delete_row' class="btn btn-primary pull-right " value="Eliminar Fila">
+                                <div class="col-md-6">
+                                    <input type="button" id="add_row" class="btn btn-primary pull-left" value="Añadir Nueva Fila">
                                 </div>
                             </div>
 
@@ -149,6 +150,7 @@
   });
 });
 
+  // Traer los precios de los productos del select
 
         function updatePrice(selectElement) {
             var product_id = selectElement.val();
@@ -170,6 +172,10 @@
             }
         }
         $(document).ready(function() {
+
+
+    // Agrega una nueva fila cuando se hace clic en el botón "Añadir fila"
+
             
     $("#add_row").click(function() {
         
@@ -179,16 +185,16 @@
         
         // Crear una nueva fila con el mismo formato que las existentes
         var new_row = "<tr id='addr" + (current_index + 1) + "'>";
-        new_row += "<td>" + (current_index + 1) + "</td>";
         new_row += "<td><select name='producto[]' id='product_id_" + (current_index + 1) + "' class='form-control product-select'>";
         new_row += "<option value='' disabled selected>Seleccione una Opcion</option>";
         new_row += "@foreach($productos as $producto)<option value='{{$producto->id_producto}}'>{{$producto->nombre}}</option>@endforeach";
         new_row += "</select></td>";
-        new_row += "<td><input type='number' name='cantidad[]' min='1' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
+        new_row += "<td><input type='number' name='cantidad[]' value='1' min='1' placeholder='Ingresa la Cantidad a llevar' class='form-control cantidad'/></td>";
         new_row += "<td><input type='number' name='precio[]' placeholder='Precio del Producto' class='form-control precio price-input' readonly/></td>";
         new_row += "<td><input id='total_calc_" + (current_index + 1) + "' type='' name='total_cantidad[]' placeholder='Total' class='form-control total' readonly value='' /></td>";
+        new_row += "<td><button type='button' class='btn btn-danger btn-delete'>Eliminar</button></td>";
         new_row += "</tr>";
-        
+
         // Agregar la nueva fila a la tabla
         $("#tab_logic tbody").append(new_row);
         var product_id = $(this).val();
@@ -214,16 +220,28 @@
         calc_total();
 
     });
+        // Escucha los clics en los botones de eliminar fila
+        $('#tab_logic').on('click', '.btn-delete', function() {
+        var current_row = $("#tab_logic tbody tr:last").attr("id");
+        var current_index = parseInt(current_row.replace("addr", ""));
+        // No se pueden borrar todas las filas
+        if (current_index ==1) {
+            return;
+        }    
+        $(this).closest('tr').remove();
+        calc_total();
 
-            $('#tab_logic tbody').on('keyup change', function() {
-                calc();
-            });
-            $('#tax').on('keyup change', function() {
-                calc_total();
-            });
+    });
+
+    $('#tab_logic tbody').on('keyup change', function() {
+        calc();
+    });
+    $('#tax').on('keyup change', function() {
+        calc_total();
+    });
 
 
-        });
+});
 
         function calc() {
             $('#tab_logic tbody tr').each(function(i, element) {
@@ -254,7 +272,7 @@
         $(document).ready(function() {
             $('.select2').select2();
         });
-    </script>
+</script>
 
 </section>
 @endsection

@@ -61,7 +61,22 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, ['total' => 'required', 'producto.*' => 'required', 'precio.*' => 'required', 'cantidad.*' => 'required|numeric|min:1', 'cliente_id' => 'required']);
+        $this->validate($request, [
+            'total' => 'required',
+            'producto.*' => 'required',
+            'precio.*' => 'required|numeric',
+            'cantidad.*' => 'required|numeric|min:1',
+            'cliente_id' => 'required',
+        ], [
+            'producto.required' => 'El campo producto en la posición :attribute es obligatorio.',
+            'precio.required' => 'El campo precio en la posición :attribute es obligatorio.',
+            'precio.numeric' => 'El campo precio en la posición :attribute debe ser numérico.',
+            'cantidad.required' => 'El campo cantidad en la posición :attribute es obligatorio.',
+            'cantidad.numeric' => 'El campo cantidad en la posición :attribute debe ser numérico.',
+            'cantidad.min' => 'El campo cantidad en la posición :attribute debe ser mayor a :min.',
+            'cliente_id.required' => 'El campo cliente_id es obligatorio.',
+        ]);    
+           
         Factura::create($request->all());
         $id_factura = Factura::max('id_factura');
         $total = $request->total_cantidad;

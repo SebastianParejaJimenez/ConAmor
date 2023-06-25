@@ -180,7 +180,7 @@ class ProductoController extends Controller
         $producto=Producto::find($id);
         $producto->update($request->all());
         
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')->with('editado', 'ok');
 
     }
 

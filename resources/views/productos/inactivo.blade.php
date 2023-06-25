@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-info mb-3" href="/productos">Productos Activos</a>
+                        <a class="btn btn-info mb-3" href="{{ url('/productos') }}">Productos Activos</a>
                     <div class="table-responsive">   
                         <table class="table table-stripped mt-2" id="listado">
                             <thead>

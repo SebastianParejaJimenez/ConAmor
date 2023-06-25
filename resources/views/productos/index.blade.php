@@ -117,6 +117,18 @@ Swal.fire({
 </script>
 @endif
 
+@if(session('editado')== "ok")
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Editado con Exito!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+</script>
+@endif
+
 @if(session('error')== "pruducto_inactivo")
 <script>
     Swal.fire({
