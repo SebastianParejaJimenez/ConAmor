@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'nombre'  => 'Administrador',
         ]);
         DB::table('rols')->insert([
-            'nombre'  => 'Usuario',
+            'nombre'  => 'Trabajador',
         ]);
 
         DB::table('users')->insert([

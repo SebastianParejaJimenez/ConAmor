@@ -7,11 +7,6 @@
 @endslot
 
 {{-- Body --}}
-<h1>{{ __('emails.reset_password') }}</h1>
-<p>{{ __('emails.greeting') }},</p>
-<p>{{ __('emails.intro_line') }}</p>
-<p>{{ __('emails.outro_line') }}</p>
-<p> Este link expirara en 60 segundos.</p>
 {{ $slot }}
 
 {{-- Footer --}}
